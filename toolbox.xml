@@ -1,4 +1,83 @@
 <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+  <category name="Logi Robot" colour="#5C81A6" icon="robot">
+    <!-- Di chuyển cơ bản -->
+    <block type="logi_robot_stop"></block>
+    <block type="logi_robot_di_thang">
+      <value name="quang_duong">
+        <shadow type="math_number">
+          <field name="NUM">20</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <!-- Điều khiển động cơ -->
+    <block type="logi_robot_robot_chay_voi_toc_doc">
+      <value name="rpm_trai">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="rpm_phai">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="logi_robot_set_toc_do_2_motor">
+      <value name="toc_do_mong_muon_motor_1">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="toc_do_mong_muon_motor_2">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="logi_robot_reset_pid"></block>
+    
+    <!-- Dò line -->
+    <block type="logi_robot_doc_line"></block>
+    <block type="logi_robot_bam_line">
+      <value name="toc_do">
+        <shadow type="math_number">
+          <field name="NUM">70</field>
+        </shadow>
+      </value>
+      <value name="he_so_chenh_lech">
+        <shadow type="math_number">
+          <field name="NUM">30</field>
+        </shadow>
+      </value>
+    </block>
+    <block type="logi_robot_chinh_thang_line"></block>
+    <block type="logi_robot_get_chenh_lech_line"></block>
+    
+    <!-- Xoay robot -->
+    <block type="logi_robot_xoay_trai"></block>
+    <block type="logi_robot_xoay_phai"></block>
+    
+    <!-- Di chuyển đến ngã tư -->
+    <block type="logi_robot_di_den_n4">
+      <value name="h">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <value name="k">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <!-- Cài đặt và truy xuất biến -->
+    <block type="logi_robot_get_huong"></block>
+    <block type="logi_robot_set_huong"></block>
+  </category>
+  
+  <!-- Giữ lại các thành phần KDI ARM từ toolbox ban đầu -->
   <category name="KDI ARM" colour="#5CA699" icon="tv">
     <!-- Block cấu hình kích thước -->
     <block type="unoarm_set_dimensions">
@@ -28,7 +107,6 @@
       </value>
     </block>
 
-
     <!-- Thêm block mới go_to_r_h -->
     <block type="unoarm_go_to_r_h">
       <value name="R">
@@ -48,10 +126,9 @@
     <!-- Lấy toạ độ hiện tại h_now -->
     <block type="unoarm_get_h_now"></block>
 
-      <!-- Lấy toạ độ hiện tại S2 -->
+    <!-- Lấy toạ độ hiện tại S2 -->
     <block type="unoarm_get_S2"></block>
     <!-- Lấy toạ độ hiện tại S3 -->
     <block type="unoarm_get_S3"></block>
-
   </category>
 </xml>

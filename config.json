@@ -2,7 +2,7 @@
     "name": "KDI EXTENSION",
     "description": "This is a KDI extension to help you with your tasks.",
     "libs": [
-        "kdi_unoarm.py"
+        "logi_robot.py"
     ],
 
     "blocks": [
