@@ -1,27 +1,27 @@
-from mdv2 import *
-from drivebase import *
-from mpu6050 import MPU6050
-from angle_sensor import AngleSensor
-from line_sensor import *
-from line_sensor_stm import *
-from motor import *
-from ultrasonic import *
+# from mdv2 import *
+# from drivebase import *
+# from mpu6050 import MPU6050
+# from angle_sensor import AngleSensor
+# from line_sensor import *
+# from line_sensor_stm import *
+# from motor import *
+# from ultrasonic import *
 import math
 
-line_sensor = LineSensorI2C()
-line_sensor1 = LineSensorI2C()
-line_sensor2 = LineSensor2(scl_pin2 = D7_PIN, sda_pin2 = D8_PIN)
+# line_sensor = LineSensorI2C()
+# line_sensor1 = LineSensorI2C()
+# line_sensor2 = LineSensor2(scl_pin2 = D7_PIN, sda_pin2 = D8_PIN)
 
-md_v2 = MotorDriverV2()
-robot = DriveBase(MODE_2WD, m1=None, m2=None, m3=None, m4=None)
+# md_v2 = MotorDriverV2()
+# robot = DriveBase(MODE_2WD, m1=None, m2=None, m3=None, m4=None)
 
-imu = MPU6050()
-angle_sensor = AngleSensor(imu)
+# imu = MPU6050()
+# angle_sensor = AngleSensor(imu)
 
-motor1 = DCMotor(md_v2, E1, reversed=True)
-motor2 = DCMotor(md_v2, E2, reversed=True)
+# motor1 = DCMotor(md_v2, E1, reversed=True)
+# motor2 = DCMotor(md_v2, E2, reversed=True)
 
-ultrasonic_D3_D4 = Ultrasonic(D3_PIN, D4_PIN)
+# ultrasonic_D3_D4 = Ultrasonic(D3_PIN, D4_PIN)
 
 #Global variables
 Kp_motor = 0
