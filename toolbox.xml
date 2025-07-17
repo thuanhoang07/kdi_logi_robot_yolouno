@@ -1,0 +1,57 @@
+<xml xmlns="https://developers.google.com/blockly/xml" id="toolbox" style="display: none">
+  <category name="KDI ARM" colour="#5CA699" icon="tv">
+    <!-- Block cấu hình kích thước -->
+    <block type="unoarm_set_dimensions">
+      <value name="D1"><shadow type="math_number"><field name="NUM">10.25</field></shadow></value>
+      <value name="D2"><shadow type="math_number"><field name="NUM">15</field></shadow></value>
+      <value name="D3"><shadow type="math_number"><field name="NUM">16</field></shadow></value>
+      <value name="D4"><shadow type="math_number"><field name="NUM">4.64</field></shadow></value>
+      <value name="D5"><shadow type="math_number"><field name="NUM">7.5</field></shadow></value>
+    </block>
+    <!-- Block kiểm tra hợp lệ trả về Boolean -->
+    <block type="unoarm_check_valid">
+      <value name="S2"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+      <value name="S3"><shadow type="math_number"><field name="NUM">0</field></shadow></value>
+    </block>
+
+    <!-- Block mới Go to S2, S3 -->
+    <block type="unoarm_go_to_s2_s3">
+      <value name="TO_S2">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="TO_S3">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+
+
+    <!-- Thêm block mới go_to_r_h -->
+    <block type="unoarm_go_to_r_h">
+      <value name="R">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="H">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
+
+    <!-- Lấy toạ độ hiện tại r_now -->
+    <block type="unoarm_get_r_now"></block>
+    <!-- Lấy toạ độ hiện tại h_now -->
+    <block type="unoarm_get_h_now"></block>
+
+      <!-- Lấy toạ độ hiện tại S2 -->
+    <block type="unoarm_get_S2"></block>
+    <!-- Lấy toạ độ hiện tại S3 -->
+    <block type="unoarm_get_S3"></block>
+
+  </category>
+</xml>
