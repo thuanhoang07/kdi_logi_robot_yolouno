@@ -1,29 +1,6 @@
-# from mdv2 import *
-# from drivebase import *
-# from mpu6050 import MPU6050
-# from angle_sensor import AngleSensor
-# from line_sensor import *
-# from line_sensor_stm import *
-# from motor import *
-# from ultrasonic import *
 import math
 
-line_sensor = LineSensorI2C()
-line_sensor1 = LineSensorI2C()
-line_sensor2 = LineSensor2(scl_pin2 = D7_PIN, sda_pin2 = D8_PIN)
-
-md_v2 = MotorDriverV2()
-robot = DriveBase(MODE_2WD, m1=None, m2=None, m3=None, m4=None)
-
-imu = MPU6050()
-angle_sensor = AngleSensor(imu)
-
-motor1 = DCMotor(md_v2, E1, reversed=True)
-motor2 = DCMotor(md_v2, E2, reversed=True)
-
-ultrasonic_D3_D4 = Ultrasonic(D3_PIN, D4_PIN)
-
-#Global variables
+# Global variables
 Kp_motor = 0
 Ki_motor = 0
 Kd_motor = 0
@@ -43,6 +20,26 @@ Last_Error_M1 = 0
 PID_M1 = 0
 Last_Error_M2 = 0
 PID_M2 = 0
+
+# Tham chiếu đến các đối tượng bên ngoài
+line_sensor = None
+line_sensor1 = None
+line_sensor2 = None
+motor1 = None
+motor2 = None
+robot = None
+
+# Hàm thiết lập tham chiếu
+def set_references(ls1=None, ls2=None, m1=None, m2=None):
+    global line_sensor1, line_sensor2, motor1, motor2
+    if ls1 is not None:
+        line_sensor1 = ls1
+    if ls2 is not None:
+        line_sensor2 = ls2
+    if m1 is not None:
+        motor1 = m1
+    if m2 is not None:
+        motor2 = m2
 
 # EXTENSION
 # Reset PID
@@ -145,6 +142,8 @@ async def bam_line(toc_do = 70, he_so_chenh_lech = 30):
 # Mô tả hàm này...
 async def doc_line():
   global huong, n4, chenh_lech_line
+  line1 = 0
+  line2 = 0
   line_sensor1_read = line_sensor1.read()
   line_sensor2_read = line_sensor2.read()
   if line_sensor1_read == (0, 1, 1, 0):
@@ -250,43 +249,6 @@ async def set_toc_do_2_motor(toc_do_mong_muon_motor_1, toc_do_mong_muon_motor_2)
   motor1.run(toc_do_thuc_te_M1)
   motor2.run(toc_do_thuc_te_M2)
 
-
-
 def deinit():
-  robot.stop()
-
-# import yolo_uno
-# yolo_uno.deinit = deinit
-
-# async def task_forever():
-#   while True:
-#     await asleep_ms(50)
-#     await wait_for_async(lambda: (ultrasonic_D3_D4.distance_cm() < 10))
-#     await reset_PID()
-#     await angle_sensor.reset()
-#     print((angle_sensor.heading))
-#     await di_den_n4(1, 1, 'P')
-#     print((angle_sensor.heading))
-
-# async def setup():
-#   print('App started')
-#   print((md_v2.battery()))
-#   angle_sensor.calibrate(250)
-#   create_task(angle_sensor.run())
-#   robot.angle_sensor(angle_sensor)
-#   robot.line_sensor(line_sensor)
-#   motor1.set_encoder(rpm=350, ppr=13, gears=48)
-#   motor2.set_encoder(rpm=350, ppr=13, gears=48)
-#   await reset_PID()
-#   # 1 : di toi
-#   # 0 : di lui
-#   huong = 1
-
-#   create_task(task_forever())
-
-# async def main():
-#   await setup()
-#   while True:
-#     await asleep_ms(100)
-
-# run_loop(main())
+  if robot is not None:
+    robot.stop()
