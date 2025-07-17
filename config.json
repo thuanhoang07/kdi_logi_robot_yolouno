@@ -1,6 +1,6 @@
 {
-    "name": "KDI EXTENSION",
-    "description": "This is a KDI extension to help you with your tasks.",
+    "name": "KDI EXTENSION FOR DELIVERY ROBOT",
+    "description": "This is a KDI extension to control a delivery robot.",
     "libs": [
         "logi_robot.py"
     ],
