@@ -95,6 +95,8 @@
       </block>
     </category>
 
+    <!-- dual line -->
+
     <category id="drivebase" name="{{ROBOTICS_CAT_MOVING}}" colour="#ff4ccd" icon="truck-monster">
       <label text="{{ROBOTICS_CAT_ROBOT_MOVING}}" web-class="blockLabelStyle" />
       <block type="robotics_robot_init" />
@@ -196,7 +198,9 @@
       <block type="robotics_remote_control_off" />
     </category>
 
-    <category id="robotics-sensor" name="{{ROBOTICS_CAT_SENSOR}}" colour="#9b6af6" icon="vr-cardboard">
+    <!-- Kho hàng -->
+
+    <!-- <category id="robotics-sensor" name="{{ROBOTICS_CAT_SENSOR}}" colour="#9b6af6" icon="vr-cardboard">
       <label text="{{ROBOTICS_CAT_ANGLE_SENSOR}}" web-class="blockLabelStyle"></label>
       <block type="robotics_angle_sensor_init">
         <value name="samples">
@@ -238,83 +242,6 @@
       <block type="robotics_follow_line_until">
         <value name="condition"></value>
       </block>
-    </category>
-  </category>
-  
-  <category name="DUAL LINE SENSOR" colour="#cb2026" icon="road">
-    <block type="line_sensor_read_all" />
-    <block type="line_sensor_read_single" />
-    <block type="line_sensor2_init" />
-    <block type="line_sensor2_read_all" />
-    <block type="line_sensor2_read_single" />
-  </category>
-
-  <category name="Logi Robot" colour="#5C81A6" icon="robot">
-    <!-- Theo thứ tự các hàm trong logi_robot.py -->
-    <block type="logi_robot_reset_pid"></block>
-    <block type="logi_robot_stop"></block>
-    <block type="logi_robot_di_thang">
-      <value name="quang_duong">
-        <shadow type="math_number">
-          <field name="NUM">20</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="logi_robot_di_den_n4">
-      <value name="h">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-      <value name="k">
-        <shadow type="math_number">
-          <field name="NUM">1</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="logi_robot_chinh_thang_line"></block>
-    <block type="logi_robot_bam_line">
-      <value name="toc_do">
-        <shadow type="math_number">
-          <field name="NUM">70</field>
-        </shadow>
-      </value>
-      <value name="he_so_chenh_lech">
-        <shadow type="math_number">
-          <field name="NUM">30</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="logi_robot_doc_line"></block>
-    <block type="logi_robot_xoay_trai"></block>
-    <block type="logi_robot_xoay_phai"></block>
-    <block type="logi_robot_robot_chay_voi_toc_doc">
-      <value name="rpm_trai">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-      <value name="rpm_phai">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    <block type="logi_robot_set_toc_do_2_motor">
-      <value name="toc_do_mong_muon_motor_1">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-      <value name="toc_do_mong_muon_motor_2">
-        <shadow type="math_number">
-          <field name="NUM">50</field>
-        </shadow>
-      </value>
-    </block>
-    <!-- Các block truy cập biến -->
-    <block type="logi_robot_get_chenh_lech_line"></block>
-    <block type="logi_robot_get_huong"></block>
-    <block type="logi_robot_set_huong"></block>
+    </category> -->
   </category>
 </xml>

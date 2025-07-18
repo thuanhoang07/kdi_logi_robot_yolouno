@@ -1,6 +1,6 @@
 {
-    "name": "ROBOTICS + DUAL LINE SENSOR ",
-    "description": "Thư viện để làm ứng dụng kết hợp giữa robotics và cảm biến đường đi kép bởi KDI EDUCATION",
+    "name": "ROBOTICS by KDI EDUCATION",
+    "description": "Thư viện để làm ứng dụng robotics với Yolo Uno",
     "libs": [
         "constants.py",
         "angle_sensor.py",
@@ -20,8 +20,7 @@
         "pcf8574_dual.py",
         "stm32_line.py",
         "line_sensor_dual.py",
-        "line_sensor_stm.py",
-        "logi_robot.py"
+        "line_sensor_stm.py"
     ],
     "blocks": [
         "definition.js"
@@ -31,5 +30,5 @@
         "en": "languages/en.js",
         "vi": "languages/vi.js"
     },
-    "poster": "poster.jpg"
+    "poster": "poster.png"
 }
