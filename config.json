@@ -16,7 +16,11 @@
         "pid.py",     
         "ps4_receiver.py",
         "servo.py",
-        "vector3d.py"
+        "vector3d.py",
+        "pcf8574_dual.py",
+        "stm32_line.py",
+        "line_sensor_dual.py",
+        "line_sensor_stm.py"
     ],
     "blocks": [
         "definition.js"
