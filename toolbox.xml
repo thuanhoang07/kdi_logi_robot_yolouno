@@ -252,7 +252,7 @@
   </category>
 
 <!-- logi -->
-  <category name="Logi Robot" colour="#5C81A6" icon="robot">
+  <!-- <category name="Logi Robot" colour="#5C81A6" icon="robot">
     <!-- Theo thứ tự các hàm trong logi_robot.py -->
     <block type="logi_robot_reset_pid"></block>
     <block type="logi_robot_stop"></block>
@@ -319,7 +319,7 @@
     <block type="logi_robot_get_chenh_lech_line"></block>
     <block type="logi_robot_get_huong"></block>
     <block type="logi_robot_set_huong"></block>
-  </category>
+  </category> -->
   
 
 </xml>
