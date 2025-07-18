@@ -2725,6 +2725,8 @@ Blockly.Python["robotics_follow_line_until"] = function (block) {
 const ColorBlock = '#cb2026';
 const ColorBlock2 = '#44cbc6';
 
+const ImgUrl3 = 'https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_rover/images/';
+
 // Line Array
 
 Blockly.Blocks['line_sensor_read_all'] = {
@@ -2736,7 +2738,7 @@ Blockly.Blocks['line_sensor_read_all'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": ImgUrl + 'line.svg',
+            "src": ImgUrl3 + 'line.svg',
             "width": 15,
             "height": 15,
             "alt": "*",
@@ -2748,7 +2750,7 @@ Blockly.Blocks['line_sensor_read_all'] = {
             "options": [
               [
                 {
-                  "src": ImgUrl + 'line_finder_none_detect.png',
+                  "src": ImgUrl3 + 'line_finder_none_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "none"
@@ -2757,7 +2759,7 @@ Blockly.Blocks['line_sensor_read_all'] = {
               ],
               [
                 {
-                  "src": ImgUrl + 'line_finder_detect.png',
+                  "src": ImgUrl3 + 'line_finder_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "detect"
@@ -2772,7 +2774,7 @@ Blockly.Blocks['line_sensor_read_all'] = {
             "options": [
               [
                 {
-                  "src": ImgUrl + 'line_finder_none_detect.png',
+                  "src": ImgUrl3 + 'line_finder_none_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "none"
@@ -2781,7 +2783,7 @@ Blockly.Blocks['line_sensor_read_all'] = {
               ],
               [
                 {
-                  "src": ImgUrl + 'line_finder_detect.png',
+                  "src": ImgUrl3 + 'line_finder_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "detect"
@@ -2796,7 +2798,7 @@ Blockly.Blocks['line_sensor_read_all'] = {
             "options": [
               [
                 {
-                  "src": ImgUrl + 'line_finder_none_detect.png',
+                  "src": ImgUrl3 + 'line_finder_none_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "none"
@@ -2805,7 +2807,7 @@ Blockly.Blocks['line_sensor_read_all'] = {
               ],
               [
                 {
-                  "src": ImgUrl + 'line_finder_detect.png',
+                  "src": ImgUrl3 + 'line_finder_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "detect"
@@ -2820,7 +2822,7 @@ Blockly.Blocks['line_sensor_read_all'] = {
             "options": [
               [
                 {
-                  "src": ImgUrl + 'line_finder_none_detect.png',
+                  "src": ImgUrl3 + 'line_finder_none_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "none"
@@ -2829,7 +2831,7 @@ Blockly.Blocks['line_sensor_read_all'] = {
               ],
               [
                 {
-                  "src": ImgUrl + 'line_finder_detect.png',
+                  "src": ImgUrl3 + 'line_finder_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "detect"
@@ -2870,7 +2872,7 @@ Blockly.Blocks['line_sensor_read_single'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": ImgUrl + 'line.svg',
+            "src": ImgUrl3 + 'line.svg',
             "width": 15,
             "height": 15,
             "alt": "*",
@@ -2960,7 +2962,7 @@ Blockly.Blocks['line_sensor2_read_all'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": ImgUrl + 'line.svg',
+            "src": ImgUrl3 + 'line.svg',
             "width": 15,
             "height": 15,
             "alt": "*",
@@ -2972,7 +2974,7 @@ Blockly.Blocks['line_sensor2_read_all'] = {
             "options": [
               [
                 {
-                  "src": ImgUrl + 'line_finder_none_detect.png',
+                  "src": ImgUrl3 + 'line_finder_none_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "none"
@@ -2981,7 +2983,7 @@ Blockly.Blocks['line_sensor2_read_all'] = {
               ],
               [
                 {
-                  "src": ImgUrl + 'line_finder_detect.png',
+                  "src": ImgUrl3 + 'line_finder_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "detect"
@@ -2996,7 +2998,7 @@ Blockly.Blocks['line_sensor2_read_all'] = {
             "options": [
               [
                 {
-                  "src": ImgUrl + 'line_finder_none_detect.png',
+                  "src": ImgUrl3 + 'line_finder_none_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "none"
@@ -3005,7 +3007,7 @@ Blockly.Blocks['line_sensor2_read_all'] = {
               ],
               [
                 {
-                  "src": ImgUrl + 'line_finder_detect.png',
+                  "src": ImgUrl3 + 'line_finder_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "detect"
@@ -3020,7 +3022,7 @@ Blockly.Blocks['line_sensor2_read_all'] = {
             "options": [
               [
                 {
-                  "src": ImgUrl + 'line_finder_none_detect.png',
+                  "src": ImgUrl3 + 'line_finder_none_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "none"
@@ -3029,7 +3031,7 @@ Blockly.Blocks['line_sensor2_read_all'] = {
               ],
               [
                 {
-                  "src": ImgUrl + 'line_finder_detect.png',
+                  "src": ImgUrl3 + 'line_finder_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "detect"
@@ -3044,7 +3046,7 @@ Blockly.Blocks['line_sensor2_read_all'] = {
             "options": [
               [
                 {
-                  "src": ImgUrl + 'line_finder_none_detect.png',
+                  "src": ImgUrl3 + 'line_finder_none_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "none"
@@ -3053,7 +3055,7 @@ Blockly.Blocks['line_sensor2_read_all'] = {
               ],
               [
                 {
-                  "src": ImgUrl + 'line_finder_detect.png',
+                  "src": ImgUrl3 + 'line_finder_detect.png',
                   "width": 15,
                   "height": 15,
                   "alt": "detect"
@@ -3092,7 +3094,7 @@ Blockly.Blocks['line_sensor2_read_single'] = {
         "args0": [
           {
             "type": "field_image",
-            "src": ImgUrl + 'line.svg',
+            "src": ImgUrl3 + 'line.svg',
             "width": 15,
             "height": 15,
             "alt": "*",
