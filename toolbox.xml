@@ -250,6 +250,7 @@
     <block type="line_sensor2_read_single" />
     
   </category>
+</xml>
 
 <!-- logi -->
   <!-- <category name="Logi Robot" colour="#5C81A6" icon="robot">
