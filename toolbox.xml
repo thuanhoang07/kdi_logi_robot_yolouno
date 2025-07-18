@@ -240,6 +240,9 @@
       </block>
     </category>
   </category>
+
+<!-- dual line  -->
+
   <category name="DUAL LINE SENSOR" colour="#cb2026" icon="road">\
     <block type="line_sensor_read_all" />
     <block type="line_sensor_read_single" />
@@ -247,6 +250,47 @@
     <block type="line_sensor2_read_all" />
     <block type="line_sensor2_read_single" />
     
+  </category>
+
+  <!-- Thêm vào file toolbox.xml, sau category DUAL LINE SENSOR -->
+
+  <category name="LOGI ROBOT" colour="#ff6b00" icon="robot">
+    <block type="logi_robot_init">
+      <field name="motor1">motor1</field>
+      <field name="motor2">motor2</field>
+    </block>
+    
+    <block type="logi_robot_di_den_n4">
+      <value name="so_nga_4">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="logi_robot_di_thang">
+      <value name="quang_duong">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="logi_robot_bam_line">
+      <value name="toc_do">
+        <shadow type="math_number">
+          <field name="NUM">70</field>
+        </shadow>
+      </value>
+      <value name="he_so">
+        <shadow type="math_number">
+          <field name="NUM">30</field>
+        </shadow>
+      </value>
+    </block>
+    
+    <block type="logi_robot_stop" />
+    <block type="logi_robot_reset_pid" />
   </category>
 
 </xml>
