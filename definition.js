@@ -3135,4 +3135,3 @@ Blockly.Python["line_sensor2_read_single"] = function (block) {
   var code = "line_sensor2.read_ss2(" + pin + ")";
   return [code, Blockly.Python.ORDER_NONE];
 };
-
