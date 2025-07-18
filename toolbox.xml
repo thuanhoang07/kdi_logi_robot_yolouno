@@ -240,8 +240,7 @@
       </block>
     </category>
   </category>
-
-<!-- dual line  -->
+<!-- dual line sensor -->
 
   <category name="DUAL LINE SENSOR" colour="#cb2026" icon="road">\
     <block type="line_sensor_read_all" />
@@ -252,45 +251,103 @@
     
   </category>
 
-  <!-- Thêm vào file toolbox.xml, sau category DUAL LINE SENSOR -->
-
-  <category name="LOGI ROBOT" colour="#ff6b00" icon="robot">
-    <block type="logi_robot_init">
-      <field name="motor1">motor1</field>
-      <field name="motor2">motor2</field>
-    </block>
+<!-- logi -->
+  <category name="Robot Bám Line" colour="#5CA699" icon="directions">
     
-    <block type="logi_robot_di_den_n4">
-      <value name="so_nga_4">
+    <!-- Block điều khiển cơ bản -->
+    <block type="robot_di_den_n4">
+      <value name="HUONG">
         <shadow type="math_number">
           <field name="NUM">1</field>
         </shadow>
       </value>
+      <value name="SO_NGA_TU">
+        <shadow type="math_number">
+          <field name="NUM">1</field>
+        </shadow>
+      </value>
+      <field name="HANH_DONG">D</field>
     </block>
-    
-    <block type="logi_robot_di_thang">
-      <value name="quang_duong">
+
+    <!-- Block di thẳng quãng đường -->
+    <block type="robot_di_thang">
+      <value name="QUANG_DUONG">
         <shadow type="math_number">
           <field name="NUM">50</field>
         </shadow>
       </value>
     </block>
-    
-    <block type="logi_robot_bam_line">
-      <value name="toc_do">
+
+    <!-- Block bám line với tham số -->
+    <block type="robot_bam_line">
+      <value name="TOC_DO">
         <shadow type="math_number">
           <field name="NUM">70</field>
         </shadow>
       </value>
-      <value name="he_so">
+      <value name="HE_SO">
         <shadow type="math_number">
           <field name="NUM">30</field>
         </shadow>
       </value>
     </block>
-    
-    <block type="logi_robot_stop" />
-    <block type="logi_robot_reset_pid" />
+
+    <!-- Block xoay trái/phải -->
+    <block type="robot_xoay_trai"></block>
+    <block type="robot_xoay_phai"></block>
+
+    <!-- Block dừng robot -->
+    <block type="robot_stop"></block>
+
+    <!-- Block chỉnh thẳng line -->
+    <block type="robot_chinh_thang_line"></block>
+
+    <!-- Block đọc line sensor -->
+    <block type="robot_doc_line"></block>
+
+    <!-- Block lấy giá trị chênh lệch line -->
+    <block type="robot_get_chenh_lech_line"></block>
+
+    <!-- Block lấy số ngã tư đã đi qua -->
+    <block type="robot_get_n4"></block>
+
+    <!-- Block thiết lập PID -->
+    <block type="robot_set_pid">
+      <value name="KP">
+        <shadow type="math_number">
+          <field name="NUM">1.5</field>
+        </shadow>
+      </value>
+      <value name="KI">
+        <shadow type="math_number">
+          <field name="NUM">0.07</field>
+        </shadow>
+      </value>
+      <value name="KD">
+        <shadow type="math_number">
+          <field name="NUM">0.5</field>
+        </shadow>
+      </value>
+    </block>
+
+    <!-- Block reset PID -->
+    <block type="robot_reset_pid"></block>
+
+    <!-- Block chạy với tốc độ -->
+    <block type="robot_chay_voi_toc_do">
+      <value name="TOC_DO_TRAI">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+      <value name="TOC_DO_PHAI">
+        <shadow type="math_number">
+          <field name="NUM">50</field>
+        </shadow>
+      </value>
+    </block>
+
   </category>
+  
 
 </xml>

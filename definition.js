@@ -3362,3 +3362,281 @@ Blockly.Python["logi_robot_reset_pid"] = function (block) {
   var code = "await logi.reset_PID()\n";
   return code;
 };
+
+
+// logi_robot_follow_line_until_cross
+// Block: Đi đến ngã tư
+Blockly.Blocks['robot_di_den_n4'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Đi đến ngã tư");
+    this.appendValueInput("HUONG")
+        .setCheck("Number")
+        .appendField("Hướng (1:tiến, 0:lùi)");
+    this.appendValueInput("SO_NGA_TU")
+        .setCheck("Number")
+        .appendField("Số ngã tư");
+    this.appendDummyInput()
+        .appendField("Hành động")
+        .appendField(new Blockly.FieldDropdown([
+          ["Dừng", "D"],
+          ["Xoay trái", "T"],
+          ["Xoay phải", "P"]
+        ]), "HANH_DONG");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(230);
+    this.setTooltip("Di chuyển robot đến ngã tư thứ k và thực hiện hành động");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_di_den_n4'] = function(block) {
+  var huong = Blockly.Python.valueToCode(block, 'HUONG', Blockly.Python.ORDER_ATOMIC) || '1';
+  var soNgaTu = Blockly.Python.valueToCode(block, 'SO_NGA_TU', Blockly.Python.ORDER_ATOMIC) || '1';
+  var hanhDong = block.getFieldValue('HANH_DONG');
+  var code = 'await di_den_n4(' + huong + ', ' + soNgaTu + ', \'' + hanhDong + '\')\n';
+  return code;
+};
+
+// Block: Đi thẳng quãng đường
+Blockly.Blocks['robot_di_thang'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Đi thẳng");
+    this.appendValueInput("QUANG_DUONG")
+        .setCheck("Number")
+        .appendField("quãng đường (cm)");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(230);
+    this.setTooltip("Di chuyển robot đi thẳng một quãng đường xác định");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_di_thang'] = function(block) {
+  var quangDuong = Blockly.Python.valueToCode(block, 'QUANG_DUONG', Blockly.Python.ORDER_ATOMIC) || '50';
+  var code = 'await di_thang(' + quangDuong + ')\n';
+  return code;
+};
+
+// Block: Bám line với tham số
+Blockly.Blocks['robot_bam_line'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Bám line");
+    this.appendValueInput("TOC_DO")
+        .setCheck("Number")
+        .appendField("Tốc độ");
+    this.appendValueInput("HE_SO")
+        .setCheck("Number")
+        .appendField("Hệ số chênh lệch");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(230);
+    this.setTooltip("Điều khiển robot bám theo line với tốc độ và hệ số điều chỉnh");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_bam_line'] = function(block) {
+  var tocDo = Blockly.Python.valueToCode(block, 'TOC_DO', Blockly.Python.ORDER_ATOMIC) || '70';
+  var heSo = Blockly.Python.valueToCode(block, 'HE_SO', Blockly.Python.ORDER_ATOMIC) || '30';
+  var code = 'await bam_line(' + tocDo + ', ' + heSo + ')\n';
+  return code;
+};
+
+// Block: Xoay trái
+Blockly.Blocks['robot_xoay_trai'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Xoay trái");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(230);
+    this.setTooltip("Xoay robot sang trái");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_xoay_trai'] = function(block) {
+  return 'await xoay_trai()\n';
+};
+
+// Block: Xoay phải
+Blockly.Blocks['robot_xoay_phai'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Xoay phải");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(230);
+    this.setTooltip("Xoay robot sang phải");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_xoay_phai'] = function(block) {
+  return 'await xoay_phai()\n';
+};
+
+// Block: Dừng robot
+Blockly.Blocks['robot_stop'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Dừng robot");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(230);
+    this.setTooltip("Dừng robot");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_stop'] = function(block) {
+  return 'await stop()\n';
+};
+
+// Block: Chỉnh thẳng line
+Blockly.Blocks['robot_chinh_thang_line'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Chỉnh thẳng line");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(230);
+    this.setTooltip("Điều chỉnh robot thẳng hàng với line");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_chinh_thang_line'] = function(block) {
+  return 'await chinh_thang_line()\n';
+};
+
+// Block: Đọc line sensor
+Blockly.Blocks['robot_doc_line'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Đọc line sensor");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(230);
+    this.setTooltip("Đọc giá trị từ cảm biến line");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_doc_line'] = function(block) {
+  return 'await doc_line()\n';
+};
+
+// Block: Lấy giá trị chênh lệch line (value block)
+Blockly.Blocks['robot_get_chenh_lech_line'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Chênh lệch line");
+    this.setOutput(true, "Number");
+    this.setColour(230);
+    this.setTooltip("Lấy giá trị chênh lệch line hiện tại");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_get_chenh_lech_line'] = function(block) {
+  var code = 'chenh_lech_line';
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+
+// Block: Lấy số ngã tư đã đi qua (value block)
+Blockly.Blocks['robot_get_n4'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Số ngã tư đã qua");
+    this.setOutput(true, "Number");
+    this.setColour(230);
+    this.setTooltip("Lấy số ngã tư robot đã đi qua");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_get_n4'] = function(block) {
+  var code = 'n4';
+  return [code, Blockly.Python.ORDER_ATOMIC];
+};
+
+// Block: Thiết lập PID
+Blockly.Blocks['robot_set_pid'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Thiết lập PID");
+    this.appendValueInput("KP")
+        .setCheck("Number")
+        .appendField("Kp");
+    this.appendValueInput("KI")
+        .setCheck("Number")
+        .appendField("Ki");
+    this.appendValueInput("KD")
+        .setCheck("Number")
+        .appendField("Kd");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(230);
+    this.setTooltip("Thiết lập các thông số PID cho điều khiển motor");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_set_pid'] = function(block) {
+  var kp = Blockly.Python.valueToCode(block, 'KP', Blockly.Python.ORDER_ATOMIC) || '1.5';
+  var ki = Blockly.Python.valueToCode(block, 'KI', Blockly.Python.ORDER_ATOMIC) || '0.07';
+  var kd = Blockly.Python.valueToCode(block, 'KD', Blockly.Python.ORDER_ATOMIC) || '0.5';
+  var code = 'Kp_motor = ' + kp + '\n';
+  code += 'Ki_motor = ' + ki + '\n';
+  code += 'Kd_motor = ' + kd + '\n';
+  return code;
+};
+
+// Block: Reset PID
+Blockly.Blocks['robot_reset_pid'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Reset PID");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(230);
+    this.setTooltip("Reset tất cả giá trị PID về mặc định");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_reset_pid'] = function(block) {
+  return 'await reset_PID()\n';
+};
+
+// Block: Chạy với tốc độ
+Blockly.Blocks['robot_chay_voi_toc_do'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Chạy robot");
+    this.appendValueInput("TOC_DO_TRAI")
+        .setCheck("Number")
+        .appendField("Tốc độ trái (rpm)");
+    this.appendValueInput("TOC_DO_PHAI")
+        .setCheck("Number")
+        .appendField("Tốc độ phải (rpm)");
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setColour(230);
+    this.setTooltip("Điều khiển robot chạy với tốc độ xác định cho mỗi motor");
+    this.setHelpUrl("");
+  }
+};
+
+Blockly.Python['robot_chay_voi_toc_do'] = function(block) {
+  var tocDoTrai = Blockly.Python.valueToCode(block, 'TOC_DO_TRAI', Blockly.Python.ORDER_ATOMIC) || '0';
+  var tocDoPhai = Blockly.Python.valueToCode(block, 'TOC_DO_PHAI', Blockly.Python.ORDER_ATOMIC) || '0';
+  var code = 'await robot_chay_voi_toc_doc(' + tocDoTrai + ', ' + tocDoPhai + ')\n';
+  return code;
+};
