@@ -207,7 +207,7 @@ async def robot_chay_voi_toc_doc(rpm_trai, rpm_phai):
 
 # EXTENSION
 async def set_toc_do_2_motor(toc_do_mong_muon_motor_1, toc_do_mong_muon_motor_2):
-  global Kp_motor, Error_M1, Ki_motor, Error_M2, Kd_motor, P_M1, P_M2, I_M1, I_M2, D_M1, D_M2, Last_Error_M1, PID_M1, Last_Error_M2, PID_M2
+  global Kp_motor, Error_M1, Ki_motor, Error_M2, Kd_motor, P_M1, P_M2, I_M1, I_M2, D_M1, D_M2, Last_Error_M1, PID_M1, Last_Error_M2, PID_M2, motor1, motor2
   # Trả về tốc độ quay hiện tại của động cơ trong 100ms gần nhất, đơn vị là rpm (revolutions per minute). Chỉ áp dụng với động cơ có cảm biến tốc độ encoder.
   Error_M1 = toc_do_mong_muon_motor_1 - (motor1.speed())
   Error_M2 = toc_do_mong_muon_motor_2 - (motor2.speed())
