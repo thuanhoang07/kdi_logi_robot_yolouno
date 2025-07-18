@@ -1,6 +1,6 @@
 {
-    "name": "ROBOTICS",
-    "description": "Thư viện để làm ứng dụng robotics với Yolo Uno",
+    "name": "ROBOTICS + DUAL LINE SENSOR ",
+    "description": "Thư viện để làm ứng dụng kết hợp giữa robotics và cảm biến đường đi kép bởi KDI EDUCATION",
     "libs": [
         "constants.py",
         "angle_sensor.py",
@@ -30,5 +30,5 @@
         "en": "languages/en.js",
         "vi": "languages/vi.js"
     },
-    "poster": "poster.png"
+    "poster": "poster.jpg"
 }
