@@ -56,6 +56,6 @@ async def reset_PID():
     Last_Error_M2 = 0
     print(f"PID reset to default values: Kp={Kp_motor}, Ki={Ki_motor}, Kd={Kd_motor}")
     
-async def stop():
-  motor1.run(0)
-  motor2.run(0)
+# async def stop():
+#   motor1.run(0)
+#   motor2.run(0)

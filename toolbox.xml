@@ -275,7 +275,7 @@
           </value>
       </block>
 
-      <block type="motor_stop"></block>
+      <!-- <block type="motor_stop"></block> -->
 
     </category>
 </xml>
