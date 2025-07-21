@@ -2732,28 +2732,6 @@ Blockly.Python["robotics_follow_line_until"] = function (block) {
 // ----------------------------------------------------------------------------------------
 // ----------------------------------------------------------------------------------------
 
-
-// Đổi tên thành logi_robot_motor_stop để tránh xung đột
-Blockly.Blocks['logi_robot_motor_stop'] = {
-  init: function() {
-    this.appendDummyInput()
-        .appendField("Dừng động cơ (LogiRobot)");
-    this.setPreviousStatement(true, null);
-    this.setNextStatement(true, null);
-    this.setColour(160);
-    this.setTooltip("Dừng tất cả các động cơ");
-    this.setHelpUrl("");
-  }
-};
-
-// Generator cho block dừng động cơ
-Blockly.Python['logi_robot_motor_stop'] = function(block) {
-  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
-  var code = 'await logi_robot.stop()\n';
-  return code;
-};
-
-
 const ColorBlock = '#cb2026';
 const ColorBlock2 = '#44cbc6';
 const ImgUrl3 = 'https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extensions/AITT-VN/yolobit_extension_rover/images/';
@@ -3227,3 +3205,22 @@ Blockly.Python['set_custom_pid'] = function(block) {
 
 
 
+// // Đổi tên thành logi_robot_motor_stop để tránh xung đột
+// Blockly.Blocks['logi_robot_motor_stop'] = {
+//   init: function() {
+//     this.appendDummyInput()
+//         .appendField("Dừng động cơ (LogiRobot)");
+//     this.setPreviousStatement(true, null);
+//     this.setNextStatement(true, null);
+//     this.setColour(160);
+//     this.setTooltip("Dừng tất cả các động cơ");
+//     this.setHelpUrl("");
+//   }
+// };
+
+// // Generator cho block dừng động cơ
+// Blockly.Python['logi_robot_motor_stop'] = function(block) {
+//   Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
+//   var code = 'await logi_robot.stop()\n';
+//   return code;
+// };
