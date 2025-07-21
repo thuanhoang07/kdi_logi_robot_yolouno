@@ -240,7 +240,7 @@
       </block>
     </category>
   </category>
-<!-- dual line  -->
+
 
   <category name="DUAL LINE SENSOR" colour="#cb2026" icon="road">\
     <block type="line_sensor_read_all" />
@@ -248,15 +248,11 @@
     <block type="line_sensor2_init" />
     <block type="line_sensor2_read_all" />
     <block type="line_sensor2_read_single" />
-    
   </category>
 
-<!-- extension PID -->
   <category name="PID Control" colour="#5CA699" icon="mobile alternate">
-    <!-- Block Reset PID -->
     <block type="pid_reset"></block>
     
-    <!-- Block cài đặt giá trị PID tùy chỉnh -->
     <block type="set_custom_pid">
         <value name="CUSTOM_KP">
             <shadow type="math_number">
