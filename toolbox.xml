@@ -242,54 +242,34 @@
   </category>
 <!-- dual line  -->
 
-  <category name="Dual Line and PID" colour="#cb2026" icon="road">
-      <!-- Line Sensor 1 -->
-      <label text="Line Sensor 1" web-class="blockLabelStyle"></label>
-      <block type="line_sensor_read_all_dual" />
-      <block type="line_sensor_read_single" />
-      
-      <sep gap="30"></sep>
-      
-      <!-- Line Sensor 2 -->
-      <label text="Line Sensor 2" web-class="blockLabelStyle"></label>
-      <block type="line_sensor2_init" />
-      <block type="line_sensor2_read_all" />
-      <block type="line_sensor2_read_single" />
-      
-      <sep gap="30"></sep>
-      
-      <!-- PID Control -->
-      <label text="PID Control" web-class="blockLabelStyle"></label>
-      <block type="pid_reset"></block>
-      <block type="set_custom_pid">
-          <value name="CUSTOM_KP">
-              <shadow type="math_number">
-                  <field name="NUM">1.5</field>
-              </shadow>
-          </value>
-          <value name="CUSTOM_KI">
-              <shadow type="math_number">
-                  <field name="NUM">0.07</field>
-              </shadow>
-          </value>
-          <value name="CUSTOM_KD">
-              <shadow type="math_number">
-                  <field name="NUM">0.5</field>
-              </shadow>
-          </value>
-      </block>
-      
-      <sep gap="30"></sep>
-      
-      <!-- Motor Control -->
-      <label text="Motor Control" web-class="blockLabelStyle"></label>
-      <block type="motor_stop"></block>
+  <category name="Dual Line and PID" colour="#cb2026" icon="road">\
+    <block type="line_sensor_read_all_dual" />
+    <block type="line_sensor_read_single" />
+    <block type="line_sensor2_init" />
+    <block type="line_sensor2_read_all" />
+    <block type="line_sensor2_read_single" />
+        <!-- Block Reset PID -->
+    <block type="pid_reset"></block>
+    
+    <!-- Block cài đặt giá trị PID tùy chỉnh -->
+    <block type="set_custom_pid">
+        <value name="CUSTOM_KP">
+            <shadow type="math_number">
+                <field name="NUM">1.5</field>
+            </shadow>
+        </value>
+        <value name="CUSTOM_KI">
+            <shadow type="math_number">
+                <field name="NUM">0.07</field>
+            </shadow>
+        </value>
+        <value name="CUSTOM_KD">
+            <shadow type="math_number">
+                <field name="NUM">0.5</field>
+            </shadow>
+        </value>
+    </block>
+
+    <block type="motor_stop"></block>
   </category>
-
-<!-- extension PID -->
-  <!-- <category name="PID Control" colour="#5CA699" icon="mobile alternate">
-
-
-
-  </category> -->
 </xml>
