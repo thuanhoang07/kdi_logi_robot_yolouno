@@ -3228,3 +3228,26 @@ Blockly.Python['motor_stop'] = function(block) {
   var code = 'await logi_robot.stop()\n';
   return code;
 };
+
+// Định nghĩa block khởi tạo PID cho motor
+Blockly.Blocks['init_pid_motor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Khởi tạo PID cho motor");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip("Khởi tạo PID và motor trước khi sử dụng");
+    this.setHelpUrl("");
+  }
+};
+
+// Generator cho block khởi tạo PID cho motor
+Blockly.Python['init_pid_motor'] = function(block) {
+  // Đảm bảo module được import
+  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
+  
+  // Chỉ có nhiệm vụ in ra dòng khởi tạo motors
+  var code = 'logi_robot.init_motors(motor1, motor2)\n';
+  return code;
+};

@@ -1,10 +1,8 @@
 import math
-
 # Global variables, khởi tạo giá trị ban đầu
 Kp_motor = 0
 Ki_motor = 0
 Kd_motor = 0
-
 n4 = 0
 Error_M1 = 0
 huong = 1
@@ -20,11 +18,21 @@ Last_Error_M1 = 0
 PID_M1 = 0
 Last_Error_M2 = 0
 PID_M2 = 0
-
 # Biến lưu trữ giá trị PID tùy chỉnh
 custom_kp = 1.5  # Giá trị mặc định
 custom_ki = 0.07  # Giá trị mặc định
 custom_kd = 0.5  # Giá trị mặc định
+
+# Biến để lưu trữ các đối tượng motor
+_motor1 = None
+_motor2 = None
+
+# Hàm khởi tạo motor
+def init_motors(motor1, motor2):
+    global _motor1, _motor2
+    _motor1 = motor1
+    _motor2 = motor2
+    print("Motors initialized")
 
 # Hàm thiết lập giá trị PID tùy chỉnh
 def set_custom_pid(kp, ki, kd):
@@ -33,7 +41,7 @@ def set_custom_pid(kp, ki, kd):
     custom_ki = ki
     custom_kd = kd
     print(f"Custom PID values set to: Kp={kp}, Ki={ki}, Kd={kd}")
-
+    
 # Reset PID - GIỮ NGUYÊN THUẬT TOÁN GỐC
 async def reset_PID():
     global Kp_motor, Error_M1, Ki_motor, Error_M2, Kd_motor, P_M1, P_M2, I_M1, I_M2, D_M1, D_M2, Last_Error_M1, PID_M1, Last_Error_M2, PID_M2
@@ -57,5 +65,9 @@ async def reset_PID():
     print(f"PID reset to default values: Kp={Kp_motor}, Ki={Ki_motor}, Kd={Kd_motor}")
     
 async def stop():
-  motor1.run(0)
-  motor2.run(0)
+    if _motor1 is None or _motor2 is None:
+        print("Error: Motors not initialized. Call init_motors() first.")
+        return
+    _motor1.run(0)
+    _motor2.run(0)
+    print("Motors stopped")
