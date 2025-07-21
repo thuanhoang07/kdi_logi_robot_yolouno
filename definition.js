@@ -3205,12 +3205,11 @@ Blockly.Python['set_custom_pid'] = function(block) {
 
 
 
-
-// Định nghĩa block dừng động cơ
-Blockly.Blocks['motor_stop'] = {
+// Đổi tên thành logi_robot_motor_stop để tránh xung đột
+Blockly.Blocks['logi_robot_motor_stop'] = {
   init: function() {
     this.appendDummyInput()
-        .appendField("Dừng động cơ");
+        .appendField("Dừng động cơ (LogiRobot)");
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.setColour(160);
@@ -3220,11 +3219,8 @@ Blockly.Blocks['motor_stop'] = {
 };
 
 // Generator cho block dừng động cơ
-Blockly.Python['motor_stop'] = function(block) {
-  // Đảm bảo module được import
+Blockly.Python['logi_robot_motor_stop'] = function(block) {
   Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
-  
-  // Gọi hàm stop() từ module logi_robot
   var code = 'await logi_robot.stop()\n';
   return code;
 };
