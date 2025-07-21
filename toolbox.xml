@@ -252,12 +252,12 @@
     <block type="line_sensor_read_single">
       <field name="pin">0</field>
     </block> -->
-    
+
     <block type="line_sensor2_init">
       <field name="scl_pin2">D3</field>
       <field name="sda_pin2">D3</field>
     </block>
-    <!-- <block type="line_sensor2_read_all">
+    <block type="line_sensor2_read_all">
       <field name="S1">0</field>
       <field name="S2">0</field>
       <field name="S3">0</field>
@@ -265,7 +265,7 @@
     </block>
     <block type="line_sensor2_read_single">
       <field name="pin">0</field>
-    </block> -->
+    </block>
   </category>
 
 
