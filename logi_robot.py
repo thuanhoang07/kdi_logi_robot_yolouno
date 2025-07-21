@@ -72,6 +72,11 @@ async def stop():
     _motor2.run(0)
     print("Motors stopped")
     
+async def di_thang(quang_duong):
+  await robot_chay_voi_toc_doc(20, 20)
+  await asleep_ms(int((quang_duong / 20)*1000))
+  await stop()
+    
     
 async def robot_chay_voi_toc_doc(rpm_trai, rpm_phai):
   await set_toc_do_2_motor(-1 * rpm_trai, rpm_phai)

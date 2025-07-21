@@ -3333,3 +3333,39 @@ Blockly.Python['robot_chay_voi_toc_doc'] = function(block) {
 };
 
 
+
+
+
+
+
+
+
+
+// Định nghĩa block cho di chuyển thẳng một quãng đường
+Blockly.Blocks['di_thang'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Di chuyển thẳng");
+    this.appendValueInput("QUANG_DUONG")
+        .setCheck("Number")
+        .appendField("quãng đường (cm)");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip("Di chuyển robot thẳng theo quãng đường xác định (cm)");
+    this.setHelpUrl("");
+  }
+};
+
+// Generator cho block di thẳng
+Blockly.Python['di_thang'] = function(block) {
+  // Đảm bảo module được import
+  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
+  
+  // Lấy giá trị quãng đường từ input
+  var quang_duong = Blockly.Python.valueToCode(block, 'QUANG_DUONG', Blockly.Python.ORDER_ATOMIC) || '0';
+  
+  // Tạo code Python
+  var code = 'await logi_robot.di_thang(' + quang_duong + ')\n';
+  return code;
+};
