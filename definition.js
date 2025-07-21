@@ -2738,11 +2738,11 @@ const ImgUrl3 = 'https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extension
 
 // Line Array
 
-Blockly.Blocks['line_sensor_read_all_dual'] = {
+Blockly.Blocks['line_sensor_read_all'] = {
   init: function () {
     this.jsonInit(
       {
-        "type": "line_sensor_read_all_dual",
+        "type": "line_sensor_read_all",
         "message0": Blockly.Msg.ROVER_LINE_READ_ALL_MESSAGE0,
         "args0": [
           {
@@ -2859,7 +2859,7 @@ Blockly.Blocks['line_sensor_read_all_dual'] = {
   }
 };
 
-Blockly.Python["line_sensor_read_all_dual"] = function (block) {
+Blockly.Python["line_sensor_read_all"] = function (block) {
   Blockly.Python.definitions_['import_line_sensor1'] = 'from line_sensor_dual import *';
   Blockly.Python.definitions_['create_line_sensor1'] = 'line_sensor1 = LineSensorI2C()';
   var S1 = block.getFieldValue("S1");
@@ -3194,7 +3194,7 @@ Blockly.Python['set_custom_pid'] = function(block) {
   Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
   
   var code = 'logi_robot.set_custom_pid(' + kp + ', ' + ki + ', ' + kd + ')\n';
-  code += 'print("Version cccccccccccc ")\n'; // Thêm thông báo phiên bản
+  code += 'print("Version 4 ")\n'; // Thêm thông báo phiên bản
   return code;
 };
 
@@ -3205,24 +3205,26 @@ Blockly.Python['set_custom_pid'] = function(block) {
 
 
 
-// // Đổi tên thành logi_robot_motor_stop để tránh xung đột
-// Blockly.Blocks['logi_robot_motor_stop'] = {
-//   init: function() {
-//     this.appendDummyInput()
-//         .appendField("Dừng động cơ (LogiRobot)");
-//     this.setPreviousStatement(true, null);
-//     this.setNextStatement(true, null);
-//     this.setColour(160);
-//     this.setTooltip("Dừng tất cả các động cơ");
-//     this.setHelpUrl("");
-//   }
-// };
 
-// // Generator cho block dừng động cơ
-// Blockly.Python['logi_robot_motor_stop'] = function(block) {
-//   Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
-//   var code = 'await logi_robot.stop()\n';
-//   return code;
-// };
+// Định nghĩa block dừng động cơ
+Blockly.Blocks['motor_stop'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Dừng động cơ");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip("Dừng tất cả các động cơ");
+    this.setHelpUrl("");
+  }
+};
 
-
+// Generator cho block dừng động cơ
+Blockly.Python['motor_stop'] = function(block) {
+  // Đảm bảo module được import
+  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
+  
+  // Gọi hàm stop() từ module logi_robot
+  var code = 'await logi_robot.stop()\n';
+  return code;
+};
