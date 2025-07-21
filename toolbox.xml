@@ -242,7 +242,7 @@
   </category>
 
 
-  <category name="Cảm biến dò đường" colour="#cb2026">
+  <category name="Dual Line Sensor" colour="#cb2026">
     <!-- Line Array 1 -->
     <block type="line_sensor_read_all_dual">
       <field name="S1">0</field>
