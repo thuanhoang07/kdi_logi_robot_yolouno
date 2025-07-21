@@ -2738,11 +2738,11 @@ const ImgUrl3 = 'https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extension
 
 // Line Array
 
-Blockly.Blocks['line_sensor_read_all'] = {
+Blockly.Blocks['line_sensor_read_all_dual'] = {
   init: function () {
     this.jsonInit(
       {
-        "type": "line_sensor_read_all",
+        "type": "line_sensor_read_all_dual",
         "message0": Blockly.Msg.ROVER_LINE_READ_ALL_MESSAGE0,
         "args0": [
           {
@@ -2859,7 +2859,7 @@ Blockly.Blocks['line_sensor_read_all'] = {
   }
 };
 
-Blockly.Python["line_sensor_read_all"] = function (block) {
+Blockly.Python["line_sensor_read_all_dual"] = function (block) {
   Blockly.Python.definitions_['import_line_sensor1'] = 'from line_sensor_dual import *';
   Blockly.Python.definitions_['create_line_sensor1'] = 'line_sensor1 = LineSensorI2C()';
   var S1 = block.getFieldValue("S1");
