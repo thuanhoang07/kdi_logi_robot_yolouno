@@ -35,7 +35,7 @@ def set_custom_pid(kp, ki, kd):
     print(f"Custom PID values set to: Kp={kp}, Ki={ki}, Kd={kd}")
 
 # Reset PID - GIỮ NGUYÊN THUẬT TOÁN GỐC
-def reset_PID():
+async def reset_PID():
     global Kp_motor, Error_M1, Ki_motor, Error_M2, Kd_motor, P_M1, P_M2, I_M1, I_M2, D_M1, D_M2, Last_Error_M1, PID_M1, Last_Error_M2, PID_M2
     # Sử dụng giá trị tùy chỉnh
     Kp_motor = custom_kp
