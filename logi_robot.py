@@ -54,3 +54,5 @@ def reset_PID():
     Error_M2 = 0
     Last_Error_M1 = 0
     Last_Error_M2 = 0
+    print(f"PID reset to default values: Kp={Kp_motor}, Ki={Ki_motor}, Kd={Kd_motor}")
+    
