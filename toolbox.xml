@@ -252,7 +252,7 @@
   </category>
 
 <!-- extension PID -->
-  <category name="PID Control" colour="#5CA699" icon="settings">
+  <category name="PID Control" colour="#5CA699" icon="mobile alternate">
     <!-- Block Reset PID -->
     <block type="pid_reset"></block>
     
