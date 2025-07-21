@@ -2738,6 +2738,29 @@ const ImgUrl3 = 'https://ohstem-public.s3.ap-southeast-1.amazonaws.com/extension
 
 // Line Array
 
+// Định nghĩa block khởi tạo cảm biến dò đường 1
+Blockly.Blocks['line_sensor1_init'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Khởi tạo cảm biến dò đường 4 mắt thứ nhất");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(ColorBlock); // Sử dụng cùng màu với các khối line_sensor khác
+    this.setTooltip("Khởi tạo cảm biến dò đường 4 mắt với cấu hình mặc định");
+    this.setHelpUrl("");
+  }
+};
+
+// Generator cho block khởi tạo cảm biến dò đường 1
+Blockly.Python['line_sensor1_init'] = function(block) {
+  // Tạo định nghĩa import
+  Blockly.Python.definitions_['import_line_sensor1'] = 'from line_sensor_dual import *';
+  
+  // Tạo code Python để khởi tạo line_sensor1
+  var code = 'line_sensor1 = LineSensorI2C()\n';
+  return code;
+};
+
 Blockly.Blocks['line_sensor_read_all_dual'] = {
   init: function () {
     this.jsonInit(
@@ -2861,7 +2884,7 @@ Blockly.Blocks['line_sensor_read_all_dual'] = {
 
 Blockly.Python["line_sensor_read_all_dual"] = function (block) {
   Blockly.Python.definitions_['import_line_sensor1'] = 'from line_sensor_dual import *';
-  Blockly.Python.definitions_['create_line_sensor1'] = 'line_sensor1 = LineSensorI2C()';
+  // Blockly.Python.definitions_['create_line_sensor1'] = 'line_sensor1 = LineSensorI2C()';
   var S1 = block.getFieldValue("S1");
   var S2 = block.getFieldValue("S2");
   var S3 = block.getFieldValue("S3");
@@ -2909,7 +2932,7 @@ Blockly.Blocks['line_sensor_read_single'] = {
 
 Blockly.Python["line_sensor_read_single"] = function (block) {
   Blockly.Python.definitions_['import_line_sensor1'] = 'from line_sensor_dual import *';
-  Blockly.Python.definitions_['create_line_sensor1'] = 'line_sensor1 = LineSensorI2C()';
+  // Blockly.Python.definitions_['create_line_sensor1'] = 'line_sensor1 = LineSensorI2C()';
   var pin = block.getFieldValue("pin");
   // TODO: Assemble Python into code variable.
   var code = "line_sensor1.read(" + pin + ")";
@@ -2928,7 +2951,7 @@ Blockly.Blocks['line_sensor2_init'] = {
         "type": "line_sensor2_read_all",
         "previousStatement": null,
         "nextStatement": null,
-        "message0": "khởi tạo cảm biến dò dường 4 mắt cổng %1 và %2",
+        "message0": "khởi tạo cảm biến dò dường 4 mắt thứ 2 cổng %1 và %2",
         "args0": [
           {
             type: "field_dropdown",

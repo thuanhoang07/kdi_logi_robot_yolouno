@@ -243,6 +243,7 @@
 
 
   <category name="Dual Line sensor" colour="#cb2026" icon="road">
+    <block type="line_sensor1_init"></block>
     <block type="line_sensor_read_all_dual">
       <field name="S1">0</field>
       <field name="S2">0</field>
@@ -293,6 +294,14 @@
 
     <block type="motor_stop"></block>
 
+    <block type="di_thang">
+      <value name="QUANG_DUONG">
+        <shadow type="math_number">
+          <field name="NUM">10</field>
+        </shadow>
+      </value>
+    </block>
+
     <block type="set_toc_do_2_motor">
       <value name="TOC_DO_MOTOR_1">
         <shadow type="math_number">
@@ -319,13 +328,7 @@
       </value>
     </block>
 
-    <block type="di_thang">
-      <value name="QUANG_DUONG">
-        <shadow type="math_number">
-          <field name="NUM">10</field>
-        </shadow>
-      </value>
-    </block>
+
 
 
 
