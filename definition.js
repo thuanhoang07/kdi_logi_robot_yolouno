@@ -3159,8 +3159,8 @@ Blockly.Blocks['pid_reset'] = {
 // Generator cho block reset_PID
 Blockly.Python['pid_reset'] = function(block) {
   // Đảm bảo module được import
-  Blockly.Python.definitions_['import_logi_robot'] = 'from logi_robot import PIDController';
-  return 'await PIDController.reset_PID()\n';
+  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
+  return 'await logi_robot.reset_PID()\n';
 };
 
 // Định nghĩa block cài đặt giá trị PID tùy chỉnh
@@ -3191,8 +3191,8 @@ Blockly.Python['set_custom_pid'] = function(block) {
   var ki = Blockly.Python.valueToCode(block, 'CUSTOM_KI', Blockly.Python.ORDER_ATOMIC) || '0.07';
   var kd = Blockly.Python.valueToCode(block, 'CUSTOM_KD', Blockly.Python.ORDER_ATOMIC) || '0.5';
   
-  Blockly.Python.definitions_['import_logi_robot'] = 'from logi_robot import PIDController';
+  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
   
-  var code = 'PIDController.set_custom_pid(' + kp + ', ' + ki + ', ' + kd + ')\n';
+  var code = 'logi_robot.set_custom_pid(' + kp + ', ' + ki + ', ' + kd + ')\n';
   return code;
 };
