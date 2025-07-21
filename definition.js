@@ -3194,7 +3194,7 @@ Blockly.Python['set_custom_pid'] = function(block) {
   Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
   
   var code = 'logi_robot.set_custom_pid(' + kp + ', ' + ki + ', ' + kd + ')\n';
-  code += 'print("Version 4 ")\n'; // Thêm thông báo phiên bản
+  code += 'print("Version 5 ")\n'; // Thêm thông báo phiên bản
   return code;
 };
 
@@ -3229,6 +3229,10 @@ Blockly.Python['motor_stop'] = function(block) {
   return code;
 };
 
+
+
+
+
 // Định nghĩa block khởi tạo PID cho motor
 Blockly.Blocks['init_pid_motor'] = {
   init: function() {
@@ -3249,5 +3253,41 @@ Blockly.Python['init_pid_motor'] = function(block) {
   
   // Chỉ có nhiệm vụ in ra dòng khởi tạo motors
   var code = 'logi_robot.init_motors(motor1, motor2)\n';
+  return code;
+};
+
+
+
+
+// Định nghĩa block đặt tốc độ cho 2 motor
+Blockly.Blocks['set_toc_do_2_motor'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Đặt tốc độ cho 2 motor");
+    this.appendValueInput("TOC_DO_MOTOR_1")
+        .setCheck("Number")
+        .appendField("Tốc độ motor 1");
+    this.appendValueInput("TOC_DO_MOTOR_2")
+        .setCheck("Number")
+        .appendField("Tốc độ motor 2");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip("Đặt tốc độ cho cả hai motor với điều khiển PID");
+    this.setHelpUrl("");
+  }
+};
+
+// Generator cho block đặt tốc độ 2 motor
+Blockly.Python['set_toc_do_2_motor'] = function(block) {
+  // Đảm bảo module được import
+  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
+  
+  // Lấy giá trị tốc độ từ input
+  var toc_do_motor_1 = Blockly.Python.valueToCode(block, 'TOC_DO_MOTOR_1', Blockly.Python.ORDER_ATOMIC) || '0';
+  var toc_do_motor_2 = Blockly.Python.valueToCode(block, 'TOC_DO_MOTOR_2', Blockly.Python.ORDER_ATOMIC) || '0';
+  
+  // Tạo code Python
+  var code = 'await logi_robot.set_toc_do_2_motor(' + toc_do_motor_1 + ', ' + toc_do_motor_2 + ')\n';
   return code;
 };

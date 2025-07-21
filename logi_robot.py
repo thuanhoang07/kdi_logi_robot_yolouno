@@ -71,3 +71,39 @@ async def stop():
     _motor1.run(0)
     _motor2.run(0)
     print("Motors stopped")
+
+
+async def set_toc_do_2_motor(toc_do_mong_muon_motor_1, toc_do_mong_muon_motor_2):
+    if _motor1 is None or _motor2 is None:
+        print("Error: Motors not initialized. Call init_motors() first.")
+        return
+    global Kp_motor, Error_M1, Ki_motor, Error_M2, Kd_motor, P_M1, P_M2, I_M1, I_M2, D_M1, D_M2, Last_Error_M1, PID_M1, Last_Error_M2, PID_M2
+    # Trả về tốc độ quay hiện tại của động cơ trong 100ms gần nhất, đơn vị là rpm (revolutions per minute). Chỉ áp dụng với động cơ có cảm biến tốc độ encoder.
+    Error_M1 = toc_do_mong_muon_motor_1 - (_motor1.speed())
+    Error_M2 = toc_do_mong_muon_motor_2 - (_motor2.speed())
+    P_M1 = Error_M1
+    P_M2 = Error_M2
+    I_M1 = I_M1 + Error_M1
+    I_M2 = I_M2 + Error_M2
+    D_M1 = Error_M1 - Last_Error_M1
+    D_M2 = Error_M2 - Last_Error_M2
+    PID_M1 = Kp_motor * P_M1 + (Ki_motor * I_M1 + Kd_motor * D_M1)
+    PID_M2 = Kp_motor * P_M2 + (Ki_motor * I_M2 + Kd_motor * D_M2)
+    if PID_M1 >= 50:
+        toc_do_thuc_te_M1 = 50
+    elif PID_M1 <= -50:
+        toc_do_thuc_te_M1 = -50
+    else:
+        toc_do_thuc_te_M1 = PID_M1
+    if PID_M2 >= 50:
+        toc_do_thuc_te_M2 = 50
+    elif PID_M2 <= -50:
+        toc_do_thuc_te_M2 = -50
+    else:
+        toc_do_thuc_te_M2 = PID_M2
+    Last_Error_M1 = Error_M1
+    Last_Error_M2 = Error_M2
+    _motor1.run(toc_do_thuc_te_M1)
+    _motor2.run(toc_do_thuc_te_M2)
+    
+    
