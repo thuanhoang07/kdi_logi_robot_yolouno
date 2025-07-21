@@ -3193,6 +3193,6 @@ Blockly.Python['set_custom_pid'] = function(block) {
   
   Blockly.Python.definitions_['import_logic_robot'] = 'from logi_robot import *';
   
-  var code = 'logic_robot.set_custom_pid(' + kp + ', ' + ki + ', ' + kd + ')\n';
+  var code = 'logi_robot.set_custom_pid(' + kp + ', ' + ki + ', ' + kd + ')\n';
   return code;
 };
