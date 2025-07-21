@@ -242,13 +242,18 @@
   </category>
 <!-- dual line  -->
 
-  <category name="Dual Line and PID" colour="#cb2026" icon="road">\
-    <block type="line_sensor_read_all_dual" />
+  <category name="DUAL LINE SENSOR" colour="#cb2026" icon="road">\
+    <block type="line_sensor_read_all" />
     <block type="line_sensor_read_single" />
     <block type="line_sensor2_init" />
     <block type="line_sensor2_read_all" />
     <block type="line_sensor2_read_single" />
-        <!-- Block Reset PID -->
+    
+  </category>
+
+<!-- extension PID -->
+  <category name="PID Control" colour="#5CA699" icon="mobile alternate">
+    <!-- Block Reset PID -->
     <block type="pid_reset"></block>
     
     <!-- Block cài đặt giá trị PID tùy chỉnh -->
@@ -271,5 +276,6 @@
     </block>
 
     <block type="motor_stop"></block>
+
   </category>
 </xml>
