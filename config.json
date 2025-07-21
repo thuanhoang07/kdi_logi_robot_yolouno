@@ -20,7 +20,8 @@
         "pcf8574_dual.py",
         "stm32_line.py",
         "line_sensor_dual.py",
-        "line_sensor_stm.py"
+        "line_sensor_stm.py",
+        "logi_robot.py"
     ],
     "blocks": [
         "definition.js"

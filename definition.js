@@ -3191,7 +3191,7 @@ Blockly.Python['set_custom_pid'] = function(block) {
   var ki = Blockly.Python.valueToCode(block, 'CUSTOM_KI', Blockly.Python.ORDER_ATOMIC) || '0.07';
   var kd = Blockly.Python.valueToCode(block, 'CUSTOM_KD', Blockly.Python.ORDER_ATOMIC) || '0.5';
   
-  Blockly.Python.definitions_['import_logic_robot'] = 'import logic_robot';
+  Blockly.Python.definitions_['import_logic_robot'] = 'from logi_robot import *';
   
   var code = 'logic_robot.set_custom_pid(' + kp + ', ' + ki + ', ' + kd + ')\n';
   return code;
