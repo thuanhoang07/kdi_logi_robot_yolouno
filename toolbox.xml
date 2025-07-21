@@ -242,8 +242,7 @@
   </category>
 
 
-  <category name="Dual Line Sensor" colour="#cb2026" icon="road">
-    <!-- Line Array 1 -->
+  <category name="Dual Line sensor" colour="#cb2026" icon="road">
     <block type="line_sensor_read_all_dual">
       <field name="S1">0</field>
       <field name="S2">0</field>
@@ -253,11 +252,9 @@
     <block type="line_sensor_read_single">
       <field name="pin">0</field>
     </block>
-    
-    <!-- Line Array 2 -->
     <block type="line_sensor2_init">
-      <field name="scl_pin2">P0</field>
-      <field name="sda_pin2">P1</field>
+      <field name="scl_pin2">D3</field>
+      <field name="sda_pin2">D3</field>
     </block>
     <block type="line_sensor2_read_all">
       <field name="S1">0</field>
