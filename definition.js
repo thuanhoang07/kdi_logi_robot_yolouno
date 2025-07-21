@@ -3321,7 +3321,6 @@ Blockly.Python['set_toc_do_2_motor'] = function(block) {
 
 
 
-
 // Định nghĩa block cho robot chạy với tốc độ
 Blockly.Blocks['robot_chay_voi_toc_doc'] = {
   init: function() {
@@ -3390,5 +3389,56 @@ Blockly.Python['di_thang'] = function(block) {
   
   // Tạo code Python
   var code = 'await logi_robot.di_thang(' + quang_duong + ')\n';
+  return code;
+};
+
+
+
+
+// Định nghĩa block khởi tạo cảm biến dò đường
+Blockly.Blocks['init_linesensors'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Khởi tạo cảm biến dò đường");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip("Khởi tạo cảm biến dò đường trước khi sử dụng");
+    this.setHelpUrl("");
+  }
+};
+
+// Generator cho block khởi tạo cảm biến dò đường
+Blockly.Python['init_linesensors'] = function(block) {
+  // Đảm bảo module được import
+  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
+  
+  // Chỉ có nhiệm vụ in ra dòng khởi tạo cảm biến
+  var code = 'logi_robot.init_linesensors(line_sensor1, line_sensor2)\n';
+  return code;
+};
+
+
+
+// Định nghĩa block đọc cảm biến dò đường
+Blockly.Blocks['doc_line'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Đọc giá trị cảm biến dò đường");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip("Đọc và hiển thị giá trị từ cả hai cảm biến dò đường");
+    this.setHelpUrl("");
+  }
+};
+
+// Generator cho block đọc cảm biến dò đường
+Blockly.Python['doc_line'] = function(block) {
+  // Đảm bảo module được import
+  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
+  
+  // Tạo code Python
+  var code = 'await logi_robot.doc_line()\n';
   return code;
 };

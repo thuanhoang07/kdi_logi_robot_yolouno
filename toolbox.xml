@@ -328,6 +328,8 @@
       </value>
     </block>
 
+    <block type="init_linesensors"></block>
+    <block type="doc_line"></block>
 
 
 

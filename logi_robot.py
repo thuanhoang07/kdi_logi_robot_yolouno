@@ -27,6 +27,9 @@ custom_kd = 0.5  # Giá trị mặc định
 # Biến để lưu trữ các đối tượng motor
 _motor1 = None
 _motor2 = None
+# Biến toàn cục để lưu các đối tượng cảm biến
+_line_sensor1 = None
+_line_sensor2 = None
 
 # Hàm khởi tạo motor
 def init_motors(motor1, motor2):
@@ -34,6 +37,13 @@ def init_motors(motor1, motor2):
     _motor1 = motor1
     _motor2 = motor2
     print("Motors initialized")
+    
+# Hàm khởi tạo cảm biến
+def init_linesensors(line_sensor1, line_sensor2):
+    global _line_sensor1, _line_sensor2
+    _line_sensor1 = line_sensor1
+    _line_sensor2 = line_sensor2
+    print("Line sensors initialized")
 
 # Hàm thiết lập giá trị PID tùy chỉnh
 def set_custom_pid(kp, ki, kd):
@@ -116,3 +126,12 @@ async def set_toc_do_2_motor(toc_do_mong_muon_motor_1, toc_do_mong_muon_motor_2)
     _motor2.run(toc_do_thuc_te_M2)
     
     
+async def doc_line():
+    if _line_sensor1 is None or _line_sensor2 is None:
+        print("Error: Line sensors not initialized. Call init_linesensors() first.")
+        return
+        
+    line_sensor1_read = _line_sensor1.read()
+    line_sensor2_read = _line_sensor2.read() 
+    print("line_sensor1_read", line_sensor1_read)
+    print("line_sensor2_read", line_sensor2_read)
