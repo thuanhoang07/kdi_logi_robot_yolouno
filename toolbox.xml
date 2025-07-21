@@ -242,12 +242,32 @@
   </category>
 
 
-  <category name="Dual Line sensor" colour="#cb2026" icon="road">
-    <block type="line_sensor_read_all" />
-    <block type="line_sensor_read_single" />
-    <block type="line_sensor2_init" />
-    <block type="line_sensor2_read_all" />
-    <block type="line_sensor2_read_single" />
+  <category name="Cảm biến dò đường" colour="#cb2026">
+    <!-- Line Array 1 -->
+    <block type="line_sensor_read_all_dual">
+      <field name="S1">0</field>
+      <field name="S2">0</field>
+      <field name="S3">0</field>
+      <field name="S4">0</field>
+    </block>
+    <block type="line_sensor_read_single">
+      <field name="pin">0</field>
+    </block>
+    
+    <!-- Line Array 2 -->
+    <block type="line_sensor2_init">
+      <field name="scl_pin2">P0</field>
+      <field name="sda_pin2">P1</field>
+    </block>
+    <block type="line_sensor2_read_all">
+      <field name="S1">0</field>
+      <field name="S2">0</field>
+      <field name="S3">0</field>
+      <field name="S4">0</field>
+    </block>
+    <block type="line_sensor2_read_single">
+      <field name="pin">0</field>
+    </block>
   </category>
 
 
