@@ -2755,10 +2755,10 @@ Blockly.Blocks['line_sensor1_init'] = {
 Blockly.Python['line_sensor1_init'] = function(block) {
   // Tạo định nghĩa import
   Blockly.Python.definitions_['import_line_sensor1'] = 'from line_sensor_dual import *';
-  
-  // Tạo code Python để khởi tạo line_sensor1
-  var code = 'line_sensor1 = LineSensorI2C()\n';
-  return code;
+  Blockly.Python.definitions_['create_line_sensor1'] = 'line_sensor1 = LineSensorI2C()';
+
+  var code = "";
+  return code ;
 };
 
 Blockly.Blocks['line_sensor_read_all_dual'] = {
