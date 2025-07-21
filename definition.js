@@ -3194,7 +3194,7 @@ Blockly.Python['set_custom_pid'] = function(block) {
   Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
   
   var code = 'logi_robot.set_custom_pid(' + kp + ', ' + ki + ', ' + kd + ')\n';
-  code += 'print("Version aaaaaaaaaa ")\n'; // Thêm thông báo phiên bản
+  code += 'print("Version bbbbbbbbbbbb ")\n'; // Thêm thông báo phiên bản
   return code;
 };
 
