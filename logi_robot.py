@@ -71,7 +71,10 @@ async def stop():
     _motor1.run(0)
     _motor2.run(0)
     print("Motors stopped")
-
+    
+    
+async def robot_chay_voi_toc_doc(rpm_trai, rpm_phai):
+  await set_toc_do_2_motor(-1 * rpm_trai, rpm_phai)
 
 async def set_toc_do_2_motor(toc_do_mong_muon_motor_1, toc_do_mong_muon_motor_2):
     if _motor1 is None or _motor2 is None:

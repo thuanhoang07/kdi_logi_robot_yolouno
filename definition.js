@@ -3194,7 +3194,7 @@ Blockly.Python['set_custom_pid'] = function(block) {
   Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
   
   var code = 'logi_robot.set_custom_pid(' + kp + ', ' + ki + ', ' + kd + ')\n';
-  code += 'print("Version 5 ")\n'; // Thêm thông báo phiên bản
+  code += 'print("Version 6 ")\n'; // Thêm thông báo phiên bản
   return code;
 };
 
@@ -3291,3 +3291,45 @@ Blockly.Python['set_toc_do_2_motor'] = function(block) {
   var code = 'await logi_robot.set_toc_do_2_motor(' + toc_do_motor_1 + ', ' + toc_do_motor_2 + ')\n';
   return code;
 };
+
+
+
+
+
+
+
+
+// Định nghĩa block cho robot chạy với tốc độ
+Blockly.Blocks['robot_chay_voi_toc_doc'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Robot chạy với tốc độ");
+    this.appendValueInput("RPM_TRAI")
+        .setCheck("Number")
+        .appendField("Tốc độ bánh trái (rpm)");
+    this.appendValueInput("RPM_PHAI")
+        .setCheck("Number")
+        .appendField("Tốc độ bánh phải (rpm)");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip("Điều khiển robot chạy với tốc độ cho bánh trái và bánh phải");
+    this.setHelpUrl("");
+  }
+};
+
+// Generator cho block robot chạy với tốc độ
+Blockly.Python['robot_chay_voi_toc_doc'] = function(block) {
+  // Đảm bảo module được import
+  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
+  
+  // Lấy giá trị tốc độ từ input
+  var rpm_trai = Blockly.Python.valueToCode(block, 'RPM_TRAI', Blockly.Python.ORDER_ATOMIC) || '0';
+  var rpm_phai = Blockly.Python.valueToCode(block, 'RPM_PHAI', Blockly.Python.ORDER_ATOMIC) || '0';
+  
+  // Tạo code Python
+  var code = 'await logi_robot.robot_chay_voi_toc_doc(' + rpm_trai + ', ' + rpm_phai + ')\n';
+  return code;
+};
+
+

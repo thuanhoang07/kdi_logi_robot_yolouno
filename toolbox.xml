@@ -292,6 +292,18 @@
       </value>
     </block>
 
+    <block type="robot_chay_voi_toc_doc">
+      <value name="RPM_TRAI">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+      <value name="RPM_PHAI">
+        <shadow type="math_number">
+          <field name="NUM">0</field>
+        </shadow>
+      </value>
+    </block>
 
 
 
@@ -309,7 +321,6 @@
 
 
 
-    
   </category>
 
 </xml>
