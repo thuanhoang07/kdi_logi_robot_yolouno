@@ -3194,5 +3194,6 @@ Blockly.Python['set_custom_pid'] = function(block) {
   Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
   
   var code = 'logi_robot.set_custom_pid(' + kp + ', ' + ki + ', ' + kd + ')\n';
+  code += 'Version 1.0.0\n'; 
   return code;
 };
