@@ -242,7 +242,7 @@
   </category>
 
 
-  <category name="Dual Line sensor" colour="#cb2026" icon="road">\
+  <category name="Dual Line sensor" colour="#cb2026" icon="road">
     <block type="line_sensor_read_all" />
     <block type="line_sensor_read_single" />
     <block type="line_sensor2_init" />
