@@ -242,7 +242,7 @@
   </category>
 
 
-  <category name="Dual Line sensor" colour="#cb2026" icon="road">
+  <!-- <category name="Dual Line sensor" colour="#cb2026" icon="road">
     <block type="line_sensor_read_all_dual">
       <field name="S1">0</field>
       <field name="S2">0</field>
@@ -265,7 +265,17 @@
     <block type="line_sensor2_read_single">
       <field name="pin">0</field>
     </block>
+  </category> -->
+
+  <category name="DUAL LINE SENSOR" colour="#cb2026" icon="road">
+    <block type="line_sensor_read_all" />
+    <block type="line_sensor_read_single" />
+    <block type="line_sensor2_init" />
+    <block type="line_sensor2_read_all" />
+    <block type="line_sensor2_read_single" />
+    
   </category>
+
 
 
   <category name="PID Control" colour="#5CA699" icon="mobile alternate">
