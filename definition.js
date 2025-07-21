@@ -3135,3 +3135,64 @@ Blockly.Python["line_sensor2_read_single"] = function (block) {
   var code = "line_sensor2.read_ss2(" + pin + ")";
   return [code, Blockly.Python.ORDER_NONE];
 };
+
+
+// New
+// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
+// -----------------------------------------------------------------------------------------
+
+// Định nghĩa block reset_PID
+Blockly.Blocks['pid_reset'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Reset PID");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("Reset tất cả các giá trị PID về giá trị tùy chỉnh");
+    this.setHelpUrl("");
+  }
+};
+
+// Generator cho block reset_PID
+Blockly.Python['pid_reset'] = function(block) {
+  // Đảm bảo module được import
+  Blockly.Python.definitions_['import_logic_robot'] = 'import logic_robot';
+  return 'await logic_robot.reset_PID()\n';
+};
+
+// Định nghĩa block cài đặt giá trị PID tùy chỉnh
+Blockly.Blocks['set_custom_pid'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Cài đặt giá trị PID tùy chỉnh");
+    this.appendValueInput("CUSTOM_KP")
+        .setCheck("Number")
+        .appendField("Kp");
+    this.appendValueInput("CUSTOM_KI")
+        .setCheck("Number")
+        .appendField("Ki");
+    this.appendValueInput("CUSTOM_KD")
+        .setCheck("Number")
+        .appendField("Kd");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(230);
+    this.setTooltip("Cài đặt giá trị PID tùy chỉnh cho reset");
+    this.setHelpUrl("");
+  }
+};
+
+// Generator cho block cài đặt giá trị PID tùy chỉnh
+Blockly.Python['set_custom_pid'] = function(block) {
+  var kp = Blockly.Python.valueToCode(block, 'CUSTOM_KP', Blockly.Python.ORDER_ATOMIC) || '1.5';
+  var ki = Blockly.Python.valueToCode(block, 'CUSTOM_KI', Blockly.Python.ORDER_ATOMIC) || '0.07';
+  var kd = Blockly.Python.valueToCode(block, 'CUSTOM_KD', Blockly.Python.ORDER_ATOMIC) || '0.5';
+  
+  Blockly.Python.definitions_['import_logic_robot'] = 'import logic_robot';
+  
+  var code = 'logic_robot.set_custom_pid(' + kp + ', ' + ki + ', ' + kd + ')\n';
+  return code;
+};
