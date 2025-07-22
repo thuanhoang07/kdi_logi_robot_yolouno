@@ -1,5 +1,7 @@
 import math
 from uasyncio import sleep_ms as asleep_ms
+
+
 # Global variables, khởi tạo giá trị ban đầu
 Kp_motor = 0
 Ki_motor = 0
@@ -44,6 +46,8 @@ def init_linesensors(line_sensor1, line_sensor2):
     _line_sensor1 = line_sensor1
     _line_sensor2 = line_sensor2
     print("Line sensors initialized")
+    
+
 
 # Hàm thiết lập giá trị PID tùy chỉnh
 def set_custom_pid(kp, ki, kd):
@@ -82,6 +86,10 @@ async def stop():
     _motor1.run(0)
     _motor2.run(0)
     print("Motors stopped")
+    
+async def wait_for_async(condition, delay_ms=50):
+    while not condition():
+        await asleep_ms(delay_ms)    
     
 async def di_thang(quang_duong):
   await robot_chay_voi_toc_doc(20, 20)
@@ -184,4 +192,5 @@ async def doc_line(huong):
         # lech ben trai < 0
         # lech ben phai > 0
         chenh_lech_line = (line1 - line2) - 0.2 * (line1 + line2)
+
 
