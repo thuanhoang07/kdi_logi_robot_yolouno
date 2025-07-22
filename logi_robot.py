@@ -224,3 +224,18 @@ async def chinh_thang_line(huong):
 
 
 
+
+async def xoay_trai(huong):
+  while (_line_sensor1.read(1)) + ((_line_sensor1.read(1)) + ((_line_sensor1.read(2)) + (_line_sensor1.read(3)))) > 0 or (_line_sensor2.read(1)) + ((_line_sensor2.read(1)) + ((_line_sensor2.read(2)) + (_line_sensor2.read(3)))) > 0:
+    await robot_chay_voi_toc_doc(-45, 45)
+  while (_line_sensor1.read(1)) + ((_line_sensor1.read(1)) + ((_line_sensor1.read(2)) + (_line_sensor1.read(3)))) == 0 or (_line_sensor2.read(1)) + ((_line_sensor2.read(1)) + ((_line_sensor2.read(2)) + (_line_sensor2.read(3)))) == 0:
+    await robot_chay_voi_toc_doc(-45, 45)
+  await chinh_thang_line(huong)
+
+
+async def xoay_phai(huong):
+  while (_line_sensor1.read(1)) + ((_line_sensor1.read(1)) + ((_line_sensor1.read(2)) + (_line_sensor1.read(3)))) > 0 or (_line_sensor2.read(1)) + ((_line_sensor2.read(1)) + ((_line_sensor2.read(2)) + (_line_sensor2.read(3)))) > 0:
+    await robot_chay_voi_toc_doc(45, -45)
+  while (_line_sensor1.read(1)) + ((_line_sensor1.read(1)) + ((_line_sensor1.read(2)) + (_line_sensor1.read(3)))) == 0 or (_line_sensor2.read(1)) + ((_line_sensor2.read(1)) + ((_line_sensor2.read(2)) + (_line_sensor2.read(3)))) == 0:
+    await robot_chay_voi_toc_doc(45, -45)
+  await chinh_thang_line(huong)

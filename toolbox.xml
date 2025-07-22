@@ -338,7 +338,8 @@
 
     <block type="chinh_thang_line"></block>
 
-
+    <block type="xoay_trai"></block>
+    <block type="xoay_phai"></block>
 
 
 
