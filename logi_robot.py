@@ -6,7 +6,7 @@ Ki_motor = 0
 Kd_motor = 0
 n4 = 0
 Error_M1 = 0
-huong = 1
+# huong = 1
 Error_M2 = 0
 P_M1 = 0
 chenh_lech_line = 0
@@ -126,12 +126,62 @@ async def set_toc_do_2_motor(toc_do_mong_muon_motor_1, toc_do_mong_muon_motor_2)
     _motor2.run(toc_do_thuc_te_M2)
     
     
-async def doc_line():
+async def doc_line(huong):
     if _line_sensor1 is None or _line_sensor2 is None:
         print("Error: Line sensors not initialized. Call init_linesensors() first.")
         return
+    
+    global n4, chenh_lech_line
+    line1 = 0  
+    line2 = 0  
         
     line_sensor1_read = _line_sensor1.read()
     line_sensor2_read = _line_sensor2.read_ss2() 
     print("line_sensor1_read", line_sensor1_read)
     print("line_sensor2_read", line_sensor2_read)
+
+    if line_sensor1_read == (0, 1, 1, 0):
+        line1 = 0
+    elif line_sensor1_read == (0, 0, 1, 0):
+        line1 = -1
+    elif line_sensor1_read == (0, 0, 1, 1):
+        line1 = -2
+    elif line_sensor1_read == (0, 0, 0, 1):
+        line1 = -3
+    elif line_sensor1_read == (0, 1, 0, 0):
+        line1 = 1
+    elif line_sensor1_read == (1, 1, 0, 0):
+        line1 = 2
+    elif line_sensor1_read == (1, 0, 0, 0):
+        line1 = 3
+    elif line_sensor1_read == (1, 1, 1, 1):
+        if huong == 1:
+            n4 += 1
+            await wait_for_async(lambda: (not (_line_sensor1.read() == (1, 1, 1, 1))))
+    if line_sensor2_read == (0, 1, 1, 0):
+        line2 = 0
+    elif line_sensor2_read == (0, 0, 1, 0):
+        line2 = 1
+    elif line_sensor2_read == (0, 0, 1, 1):
+        line2 = 2
+    elif line_sensor2_read == (0, 0, 0, 1):
+        line2 = 3
+    elif line_sensor2_read == (0, 1, 0, 0):
+        line2 = -1
+    elif line_sensor2_read == (1, 1, 0, 0):
+        line2 = -2
+    elif line_sensor2_read == (1, 0, 0, 0):
+        line2 = -3
+    elif line_sensor2_read == (1, 1, 1, 1):
+        if huong == 0:
+            n4 += 1
+            await wait_for_async(lambda: (not (_line_sensor2.read_ss2() == (1, 1, 1, 1))))
+    if huong == 1:
+        # lech ben trai < 0
+        # lech ben phai > 0
+        chenh_lech_line = (line1 - line2) + 0.2 * (line1 + line2)
+    elif huong == 0:
+        # lech ben trai < 0
+        # lech ben phai > 0
+        chenh_lech_line = (line1 - line2) - 0.2 * (line1 + line2)
+

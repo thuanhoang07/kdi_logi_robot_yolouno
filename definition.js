@@ -3439,6 +3439,31 @@ Blockly.Python['doc_line'] = function(block) {
   Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
   
   // Tạo code Python
-  var code = 'await logi_robot.doc_line()\n';
+  var code = 'await logi_robot.doc_line(huong)\n';
+  return code;
+};
+
+
+// Định nghĩa block thiết lập hướng di chuyển
+Blockly.Blocks['set_direction'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Hướng di chuyển")
+        .appendField(new Blockly.FieldDropdown([
+          ["Tiến (Line 1)", "1"],
+          ["Lùi (Line 2)", "0"]
+        ]), "DIRECTION");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip("Thiết lập hướng di chuyển của robot (Tiến theo Line 1 hoặc Lùi theo Line 2)");
+    this.setHelpUrl("");
+  }
+};
+
+// Generator cho block thiết lập hướng di chuyển
+Blockly.Python['set_direction'] = function(block) {
+  var direction = block.getFieldValue('DIRECTION');
+  var code = 'huong = ' + direction + ' # 1: Tiến (Line 1), 0: Lùi (Line 2)\n';
   return code;
 };

@@ -331,7 +331,9 @@
     <block type="init_linesensors"></block>
     <block type="doc_line"></block>
 
-
+    <block type="set_direction">
+      <field name="DIRECTION">1</field>
+    </block>
 
 
 
