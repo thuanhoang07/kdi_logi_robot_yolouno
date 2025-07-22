@@ -3464,6 +3464,6 @@ Blockly.Blocks['set_direction'] = {
 // Generator cho block thiết lập hướng di chuyển
 Blockly.Python['set_direction'] = function(block) {
   var direction = block.getFieldValue('DIRECTION');
-  var code = 'huong = ' + direction + ' # 1: Tiến (Line 1), 0: Lùi (Line 2)\n';
-  return code;
+  Blockly.Python.definitions_['define_huong'] = 'huong = ' + direction + '  # 1: Tiến (Line 1), 0: Lùi (Line 2)';
+  return '';
 };

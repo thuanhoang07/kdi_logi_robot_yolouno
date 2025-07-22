@@ -194,3 +194,10 @@ async def doc_line(huong):
         chenh_lech_line = (line1 - line2) - 0.2 * (line1 + line2)
 
 
+async def bam_line(toc_do = 70, he_so_chenh_lech = 30):
+  global huong, chenh_lech_line
+  await doc_line()
+  if huong == 1:
+    await robot_chay_voi_toc_doc(toc_do - he_so_chenh_lech * chenh_lech_line, toc_do + he_so_chenh_lech * chenh_lech_line)
+  elif huong == 0:
+    await robot_chay_voi_toc_doc(- toc_do - he_so_chenh_lech * chenh_lech_line, - toc_do + he_so_chenh_lech * chenh_lech_line)
