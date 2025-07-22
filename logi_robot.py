@@ -79,6 +79,7 @@ async def reset_PID():
     Last_Error_M2 = 0
     print(f"PID reset to default values: Kp={Kp_motor}, Ki={Ki_motor}, Kd={Kd_motor}")
     
+    
 async def stop():
     if _motor1 is None or _motor2 is None:
         print("Error: Motors not initialized. Call init_motors() first.")
@@ -194,10 +195,32 @@ async def doc_line(huong):
         chenh_lech_line = (line1 - line2) - 0.2 * (line1 + line2)
 
 
-async def bam_line(toc_do = 70, he_so_chenh_lech = 30):
-  global huong, chenh_lech_line
-  await doc_line()
-  if huong == 1:
-    await robot_chay_voi_toc_doc(toc_do - he_so_chenh_lech * chenh_lech_line, toc_do + he_so_chenh_lech * chenh_lech_line)
-  elif huong == 0:
-    await robot_chay_voi_toc_doc(- toc_do - he_so_chenh_lech * chenh_lech_line, - toc_do + he_so_chenh_lech * chenh_lech_line)
+async def chinh_thang_line(huong):
+  global n4, chenh_lech_line
+  await doc_line(huong)  # Truyền huong 
+  while math.fabs(chenh_lech_line) >= 3:
+    await doc_line(huong)  # Truyền huong
+    if huong == 1:
+      await robot_chay_voi_toc_doc(0 - 15 * chenh_lech_line, 0 + 15 * chenh_lech_line)
+    elif huong == 0:
+      await robot_chay_voi_toc_doc(0 - 15 * chenh_lech_line, 0 + 15 * chenh_lech_line)
+  await stop()
+  await asleep_ms(100)
+  while math.fabs(chenh_lech_line) >= 2:
+    await doc_line(huong)  # Truyền huong
+    if huong == 1:
+      await robot_chay_voi_toc_doc(0 - 15 * chenh_lech_line, 0 + 15 * chenh_lech_line)
+    elif huong == 0:
+      await robot_chay_voi_toc_doc(0 - 15 * chenh_lech_line, 0 + 15 * chenh_lech_line)
+  await stop()
+  await asleep_ms(100)
+  while math.fabs(chenh_lech_line) >= 2:
+    await doc_line(huong)  # Truyền huong
+    if huong == 1:
+      await robot_chay_voi_toc_doc(0 - 15 * chenh_lech_line, 0 + 15 * chenh_lech_line)
+    elif huong == 0:
+      await robot_chay_voi_toc_doc(0 - 15 * chenh_lech_line, 0 + 15 * chenh_lech_line)
+  await stop()
+
+
+

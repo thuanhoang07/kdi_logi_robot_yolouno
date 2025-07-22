@@ -3467,3 +3467,31 @@ Blockly.Python['set_direction'] = function(block) {
   Blockly.Python.definitions_['define_huong'] = 'huong = ' + direction + '  # 1: Tiến (Line 1), 0: Lùi (Line 2)';
   return '';
 };
+
+
+
+
+// Định nghĩa block chỉnh thẳng line
+Blockly.Blocks['chinh_thang_line'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Chỉnh thẳng theo đường line");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip("Điều chỉnh robot để đi thẳng theo đường line");
+    this.setHelpUrl("");
+  }
+};
+
+// Generator cho block chỉnh thẳng line
+Blockly.Python['chinh_thang_line'] = function(block) {
+  // Đảm bảo module được import
+  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
+  // Đảm bảo biến huong được định nghĩa
+  Blockly.Python.definitions_['define_huong'] = 'huong = 1  # 1: Tiến (Line 1), 0: Lùi (Line 2)';
+  
+  // Tạo code Python
+  var code = 'await logi_robot.chinh_thang_line(huong)\n';
+  return code;
+};
