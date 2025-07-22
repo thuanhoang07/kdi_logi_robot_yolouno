@@ -132,6 +132,6 @@ async def doc_line():
         return
         
     line_sensor1_read = _line_sensor1.read()
-    line_sensor2_read = _line_sensor2.read() 
+    line_sensor2_read = _line_sensor2.read_ss2() 
     print("line_sensor1_read", line_sensor1_read)
     print("line_sensor2_read", line_sensor2_read)
