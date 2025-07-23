@@ -257,7 +257,7 @@ async def doc_line(huong):
         # lech ben trai < 0
         # lech ben phai > 0
         chenh_lech_line = (line1 - line2) - 0.2 * (line1 + line2)
-    print("chenh lech line", chenh_lech_line)
+    print("doc_line. chenh lech line", chenh_lech_line)
 
 
 async def chinh_thang_line(huong):
@@ -286,7 +286,7 @@ async def chinh_thang_line(huong):
     elif huong == 0:
       await robot_chay_voi_toc_doc(0 - 15 * chenh_lech_line, 0 + 15 * chenh_lech_line)
   await stop()
-  print("huong la:", huong)
+  print("chinh_thang_line. huong:", huong, "chenh lech line:", chenh_lech_line)
 
 
 
@@ -309,6 +309,7 @@ async def xoay_trai(huong):
   while (_line_sensor1.read(0)) + ((_line_sensor1.read(1)) + ((_line_sensor1.read(2)) + (_line_sensor1.read(3)))) == 0 or (_line_sensor2.read_ss2(0)) + ((_line_sensor2.read_ss2(1)) + ((_line_sensor2.read_ss2(2)) + (_line_sensor2.read_ss2(3)))) == 0:
     await robot_chay_voi_toc_doc(-45, 45)
   await chinh_thang_line(huong)
+  print("xoay_trai. huong:", huong)
 
 
 async def xoay_phai(huong):
@@ -317,6 +318,7 @@ async def xoay_phai(huong):
   while (_line_sensor1.read(0)) + ((_line_sensor1.read(1)) + ((_line_sensor1.read(2)) + (_line_sensor1.read(3)))) == 0 or (_line_sensor2.read_ss2(0)) + ((_line_sensor2.read_ss2(1)) + ((_line_sensor2.read_ss2(2)) + (_line_sensor2.read_ss2(3)))) == 0:
     await robot_chay_voi_toc_doc(45, -45)
   await chinh_thang_line(huong)
+  print("xoay_phai. huong:", huong)
   
   
   
@@ -334,9 +336,10 @@ async def bam_line(huong, toc_do = 70, he_so_chenh_lech = 30):
   await doc_line(huong)
   if huong == 1:
     await robot_chay_voi_toc_doc(toc_do - he_so_chenh_lech * chenh_lech_line, toc_do + he_so_chenh_lech * chenh_lech_line)
+    print("bam_line. huong: ", huong)
   elif huong == 0:
     await robot_chay_voi_toc_doc(- toc_do - he_so_chenh_lech * chenh_lech_line, - toc_do + he_so_chenh_lech * chenh_lech_line)
-
+    print("bam_line. huong: ", huong)
 
 
 
@@ -358,6 +361,7 @@ async def di_den_n4(h, k, hanh_dong):
     await xoay_phai(h)
 
   await chinh_thang_line(h)
+  print("di_den_n4. h: ", h, "k: ", k, "hanh_dong: ", hanh_dong)
   
   
   
