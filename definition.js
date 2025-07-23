@@ -3586,3 +3586,46 @@ Blockly.Python['bam_line'] = function(block) {
   var code = 'await logi_robot.bam_line(' + params.join(', ') + ')\n';
   return code;
 };
+
+
+
+
+
+// Định nghĩa block đi đến ngã tư
+Blockly.Blocks['di_den_n4'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Đi đến ngã tư thứ")
+        .appendField(new Blockly.FieldNumber(1, 1, 100), "SO_NGA_TU");
+    this.appendDummyInput()
+        .appendField("Hướng đi")
+        .appendField(new Blockly.FieldDropdown([
+          ["Tiến (Line 1)", "1"],
+          ["Lùi (Line 2)", "0"]
+        ]), "HUONG");
+    this.appendDummyInput()
+        .appendField("Hành động khi đến nơi")
+        .appendField(new Blockly.FieldDropdown([
+          ["Dừng lại", "D"],
+          ["Rẽ trái", "T"],
+          ["Rẽ phải", "P"]
+        ]), "HANH_DONG");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip("Di chuyển đến ngã tư thứ k và thực hiện hành động được chọn");
+    this.setHelpUrl("");
+  }
+};
+
+// Generator cho block đi đến ngã tư
+Blockly.Python['di_den_n4'] = function(block) {
+  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
+  
+  var so_nga_tu = block.getFieldValue('SO_NGA_TU');
+  var huong = block.getFieldValue('HUONG');
+  var hanh_dong = block.getFieldValue('HANH_DONG');
+  
+  var code = 'await logi_robot.di_den_n4(' + huong + ', ' + so_nga_tu + ', "' + hanh_dong + '")\n';
+  return code;
+};

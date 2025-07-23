@@ -353,7 +353,12 @@
         </shadow>
       </value>
     </block>
-
+    
+    <block type="di_den_n4">
+      <field name="SO_NGA_TU">1</field>
+      <field name="HUONG">1</field>
+      <field name="HANH_DONG">D</field>
+    </block>
 
   </category>
 

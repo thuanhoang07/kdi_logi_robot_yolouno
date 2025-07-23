@@ -336,3 +336,28 @@ async def bam_line(huong, toc_do = 70, he_so_chenh_lech = 30):
     await robot_chay_voi_toc_doc(toc_do - he_so_chenh_lech * chenh_lech_line, toc_do + he_so_chenh_lech * chenh_lech_line)
   elif huong == 0:
     await robot_chay_voi_toc_doc(- toc_do - he_so_chenh_lech * chenh_lech_line, - toc_do + he_so_chenh_lech * chenh_lech_line)
+
+
+
+
+async def di_den_n4(h, k, hanh_dong):
+  global n4
+  n4 = 0
+#   huong = h
+  await chinh_thang_line(h)
+  while n4 < k:
+    await bam_line(h)
+  await stop()
+  await chinh_thang_line(h)
+
+  if hanh_dong == 'D':
+    await stop()
+  elif hanh_dong == 'T':
+    await xoay_trai(h)
+  elif hanh_dong == 'P':
+    await xoay_phai(h)
+
+  await chinh_thang_line(h)
+  
+  
+  
