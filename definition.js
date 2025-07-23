@@ -3217,7 +3217,7 @@ Blockly.Python['set_custom_pid'] = function(block) {
   Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
   
   var code = 'logi_robot.set_custom_pid(' + kp + ', ' + ki + ', ' + kd + ')\n';
-  code += 'print("Version 6 ")\n'; // Thêm thông báo phiên bản
+  code += 'print("version7 ")\n'; // Thêm thông báo phiên bản
   return code;
 };
 
@@ -3532,5 +3532,57 @@ Blockly.Blocks['xoay_phai'] = {
 Blockly.Python['xoay_phai'] = function(block) {
   Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
   var code = 'await logi_robot.xoay_phai(huong)\n';
+  return code;
+};
+
+
+
+// Định nghĩa block bám line với tham số tùy chọn
+Blockly.Blocks['bam_line'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("Bám theo đường line");
+    this.appendValueInput("TOC_DO")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Tốc độ");
+    this.appendValueInput("HE_SO")
+        .setCheck("Number")
+        .setAlign(Blockly.ALIGN_RIGHT)
+        .appendField("Hệ số chênh lệch");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(160);
+    this.setTooltip("Điều khiển robot bám theo đường line với tốc độ và hệ số chênh lệch tùy chỉnh");
+    this.setHelpUrl("");
+    // Đánh dấu các tham số là tùy chọn
+    this.inputList[1].setVisible(true);
+    this.inputList[2].setVisible(true);
+  }
+};
+
+
+
+
+// Generator cho block bám line (đã sửa)
+Blockly.Python['bam_line'] = function(block) {
+  Blockly.Python.definitions_['import_logi_robot'] = 'import logi_robot';
+  
+  // Lấy giá trị tốc độ nếu được cung cấp
+  var toc_do = Blockly.Python.valueToCode(block, 'TOC_DO', Blockly.Python.ORDER_ATOMIC) || '';
+  // Lấy giá trị hệ số chênh lệch nếu được cung cấp
+  var he_so = Blockly.Python.valueToCode(block, 'HE_SO', Blockly.Python.ORDER_ATOMIC) || '';
+  
+  // Tạo chuỗi tham số, luôn bắt đầu với huong
+  var params = ['huong'];
+  if (toc_do) {
+    params.push(toc_do);
+    if (he_so) {
+      params.push(he_so);
+    }
+  }
+  
+  // Tạo mã Python
+  var code = 'await logi_robot.bam_line(' + params.join(', ') + ')\n';
   return code;
 };

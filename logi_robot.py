@@ -6,6 +6,7 @@ from uasyncio import sleep_ms as asleep_ms
 Kp_motor = 0
 Ki_motor = 0
 Kd_motor = 0
+
 n4 = 0
 Error_M1 = 0
 # huong = 1
@@ -33,6 +34,24 @@ _motor2 = None
 _line_sensor1 = None
 _line_sensor2 = None
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Hàm 
+async def wait_for_async(condition, delay_ms=50):
+    while not condition():
+        await asleep_ms(delay_ms)  
+
 # Hàm khởi tạo motor
 def init_motors(motor1, motor2):
     global _motor1, _motor2
@@ -47,6 +66,17 @@ def init_linesensors(line_sensor1, line_sensor2):
     _line_sensor2 = line_sensor2
     print("Line sensors initialized")
     
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Hàm thiết lập giá trị PID tùy chỉnh
@@ -78,7 +108,18 @@ async def reset_PID():
     Last_Error_M1 = 0
     Last_Error_M2 = 0
     print(f"PID reset to default values: Kp={Kp_motor}, Ki={Ki_motor}, Kd={Kd_motor}")
-    
+
+
+
+
+
+
+
+
+
+
+
+     
     
 async def stop():
     if _motor1 is None or _motor2 is None:
@@ -88,14 +129,21 @@ async def stop():
     _motor2.run(0)
     print("Motors stopped")
     
-async def wait_for_async(condition, delay_ms=50):
-    while not condition():
-        await asleep_ms(delay_ms)    
-    
+
 async def di_thang(quang_duong):
   await robot_chay_voi_toc_doc(20, 20)
   await asleep_ms(int((quang_duong / 20)*1000))
   await stop()
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
     
     
 async def robot_chay_voi_toc_doc(rpm_trai, rpm_phai):
@@ -133,6 +181,22 @@ async def set_toc_do_2_motor(toc_do_mong_muon_motor_1, toc_do_mong_muon_motor_2)
     Last_Error_M2 = Error_M2
     _motor1.run(toc_do_thuc_te_M1)
     _motor2.run(toc_do_thuc_te_M2)
+    print("M1: ", toc_do_thuc_te_M1, "M2: ", toc_do_thuc_te_M2)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
 async def doc_line(huong):
@@ -193,6 +257,7 @@ async def doc_line(huong):
         # lech ben trai < 0
         # lech ben phai > 0
         chenh_lech_line = (line1 - line2) - 0.2 * (line1 + line2)
+    print("chenh lech line", chenh_lech_line)
 
 
 async def chinh_thang_line(huong):
@@ -226,6 +291,18 @@ async def chinh_thang_line(huong):
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+# line sensor 0 1 2 3 có 1 cái phát hiện thì dừng lại
 async def xoay_trai(huong):
   while (_line_sensor1.read(0)) + ((_line_sensor1.read(1)) + ((_line_sensor1.read(2)) + (_line_sensor1.read(3)))) > 0 or (_line_sensor2.read_ss2(0)) + ((_line_sensor2.read_ss2(1)) + ((_line_sensor2.read_ss2(2)) + (_line_sensor2.read_ss2(3)))) > 0:
     await robot_chay_voi_toc_doc(-45, 45)
@@ -240,3 +317,22 @@ async def xoay_phai(huong):
   while (_line_sensor1.read(0)) + ((_line_sensor1.read(1)) + ((_line_sensor1.read(2)) + (_line_sensor1.read(3)))) == 0 or (_line_sensor2.read_ss2(0)) + ((_line_sensor2.read_ss2(1)) + ((_line_sensor2.read_ss2(2)) + (_line_sensor2.read_ss2(3)))) == 0:
     await robot_chay_voi_toc_doc(45, -45)
   await chinh_thang_line(huong)
+  
+  
+  
+
+
+
+
+
+
+
+
+
+async def bam_line(huong, toc_do = 70, he_so_chenh_lech = 30):
+  global chenh_lech_line
+  await doc_line(huong)
+  if huong == 1:
+    await robot_chay_voi_toc_doc(toc_do - he_so_chenh_lech * chenh_lech_line, toc_do + he_so_chenh_lech * chenh_lech_line)
+  elif huong == 0:
+    await robot_chay_voi_toc_doc(- toc_do - he_so_chenh_lech * chenh_lech_line, - toc_do + he_so_chenh_lech * chenh_lech_line)
