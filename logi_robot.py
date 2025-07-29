@@ -2,14 +2,12 @@ import math
 from uasyncio import sleep_ms as asleep_ms
 
 
-# Global variables, khởi tạo giá trị ban đầu
 Kp_motor = 0
 Ki_motor = 0
 Kd_motor = 0
 
 n4 = 0
 Error_M1 = 0
-# huong = 1
 Error_M2 = 0
 P_M1 = 0
 chenh_lech_line = 0
@@ -22,45 +20,38 @@ Last_Error_M1 = 0
 PID_M1 = 0
 Last_Error_M2 = 0
 PID_M2 = 0
-# Biến lưu trữ giá trị PID tùy chỉnh
+
+# PID motor
 custom_kp = 1.5  # Giá trị mặc định 1.5
 custom_ki = 0.07  # Giá trị mặc định
 custom_kd = 0.5  # Giá trị mặc định 0.5
 
-# Biến để lưu trữ các đối tượng motor
+# motor
 _motor1 = None
 _motor2 = None
-# Biến toàn cục để lưu các đối tượng cảm biến
+# cảm biến
 _line_sensor1 = None
 _line_sensor2 = None
 
 
-
-
-# Thêm vào đầu file sau các biến global
 MAX_I_LIMIT = 400  # Giới hạn I term
 MAX_PID_OUTPUT = 60  # Giới hạn output PID
 
 
-
-
-# Bám line - Thêm biến toàn cục mới
-# Thêm biến global mới cho PID line following
+# PID line following
 Error_Line = 0
 Last_Error_Line = 0  
 I_Line = 0
 PID_Line = 0
-# Thêm vào đầu hàm
 P_Line = 0
 D_Line = 0
 
-# PID parameters riêng cho line following
+# PID line following
 Kp_line = 10.0  # Tương đương he_so_chenh_lech cũ
 Ki_line = 0.02  # Nhỏ để tránh overshoot
 Kd_line = 5.0   # Giúp giảm oscillation
 
 
-# Constants cho line PID
 MAX_I_LINE_LIMIT = 60   # Giới hạn I term
 MAX_LINE_CORRECTION = 40  # Giới hạn correction output
 INTERSECTION_REDUCTION_FACTOR = 0.3  # Giảm correction tại ngã tư
@@ -89,17 +80,7 @@ def init_linesensors(line_sensor1, line_sensor2):
 
 
 
-
-
-
-
-
-
-
-
-
-
-# Hàm thiết lập giá trị PID tùy chỉnh
+# Lấy giá trị nhập vào
 def set_custom_pid(kp, ki, kd):
     global custom_kp, custom_ki, custom_kd
     custom_kp = kp
@@ -141,7 +122,6 @@ async def reset_PID():
     Kp_motor = custom_kp
     Ki_motor = custom_ki
     Kd_motor = custom_kd
-    # ✅ QUAN TRỌNG: Reset tất cả biến PID về 0
     P_M1 = 0
     P_M2 = 0
     I_M1 = 0
@@ -154,7 +134,7 @@ async def reset_PID():
     Last_Error_M2 = 0
     PID_M1 = 0
     PID_M2 = 0
-    print(f"PID reset: Kp={Kp_motor}, Ki={Ki_motor}, Kd={Kd_motor}")
+    # print(f"PID reset: Kp={Kp_motor}, Ki={Ki_motor}, Kd={Kd_motor}")
 
 
 
@@ -236,32 +216,25 @@ async def set_toc_do_2_motor(toc_do_mong_muon_motor_1, toc_do_mong_muon_motor_2)
     
     global Kp_motor, Error_M1, Ki_motor, Error_M2, Kd_motor, P_M1, P_M2, I_M1, I_M2, D_M1, D_M2, Last_Error_M1, PID_M1, Last_Error_M2, PID_M2
     
-    # Tính toán error
     Error_M1 = toc_do_mong_muon_motor_1 - (_motor1.speed())
     Error_M2 = toc_do_mong_muon_motor_2 - (_motor2.speed())
     
-    # P term
     P_M1 = Error_M1
     P_M2 = Error_M2
     
-    #  I term với anti-windup
     I_M1 = I_M1 + Error_M1
     I_M2 = I_M2 + Error_M2
     
-    # Giới hạn I term để tránh windup
     I_M1 = max(-MAX_I_LIMIT, min(MAX_I_LIMIT, I_M1))
     I_M2 = max(-MAX_I_LIMIT, min(MAX_I_LIMIT, I_M2))
-    print("I_M1:", I_M1, "I_M2:", I_M2)  # Debug info
+    # print("I_M1:", I_M1, "I_M2:", I_M2)  # Debug info
     
-    # D term
     D_M1 = Error_M1 - Last_Error_M1
     D_M2 = Error_M2 - Last_Error_M2
     
-    # Tính PID
     PID_M1 = Kp_motor * P_M1 + Ki_motor * I_M1 + Kd_motor * D_M1
     PID_M2 = Kp_motor * P_M2 + Ki_motor * I_M2 + Kd_motor * D_M2
     
-    #  Giới hạn output (giữ nguyên logic cũ)
     if PID_M1 >= MAX_PID_OUTPUT:
         toc_do_thuc_te_M1 = MAX_PID_OUTPUT
     elif PID_M1 <= -MAX_PID_OUTPUT:
@@ -322,8 +295,8 @@ async def doc_line(huong):
         
     line_sensor1_read = _line_sensor1.read()
     line_sensor2_read = _line_sensor2.read_ss2() 
-    print("line_sensor1_read", line_sensor1_read)
-    print("line_sensor2_read", line_sensor2_read)
+    # print("line_sensor1_read", line_sensor1_read)
+    # print("line_sensor2_read", line_sensor2_read)
 
     if line_sensor1_read == (0, 1, 1, 0):
         line1 = 0
@@ -342,7 +315,7 @@ async def doc_line(huong):
     elif line_sensor1_read in intersection_patterns:
         if huong == 1:
             n4 += 1
-            print(f"Intersection detected: {line_sensor1_read}")
+            # print(f"Intersection detected: {line_sensor1_read}")
             await wait_for_async(lambda: (_line_sensor1.read() not in intersection_patterns))
 
     if line_sensor2_read == (0, 1, 1, 0):
@@ -362,7 +335,7 @@ async def doc_line(huong):
     elif line_sensor2_read in intersection_patterns:
         if huong == 0:
             n4 += 1
-            print(f"Intersection detected: {line_sensor2_read}")
+            # print(f"Intersection detected: {line_sensor2_read}")
             await wait_for_async(lambda: (_line_sensor2.read_ss2() not in intersection_patterns))
     if huong == 1:
         # lech ben trai < 0
@@ -372,7 +345,7 @@ async def doc_line(huong):
         # lech ben trai < 0
         # lech ben phai > 0
         chenh_lech_line = (line1 - line2) - 0.2 * (line1 + line2)
-    print("doc_line. chenh lech line", chenh_lech_line)
+    # print("doc_line. chenh lech line", chenh_lech_line)
 
 
 # async def chinh_thang_line(huong):
@@ -544,10 +517,6 @@ async def doc_line(huong):
 #     print("bam_line. huong:", huong, "he_so:", he_so_chenh_lech)
 
 
-
-
-
-# Hàm thiết lập PID cho line following
 def set_line_pid(kp, ki, kd):
     global Kp_line, Ki_line, Kd_line
     Kp_line = kp
@@ -555,7 +524,7 @@ def set_line_pid(kp, ki, kd):
     Kd_line = kd
     print(f"Line PID values set to: Kp={kp}, Ki={ki}, Kd={kd}")
 
-# Reset PID cho line following
+
 async def reset_line_PID():
     global Error_Line, Last_Error_Line, I_Line, PID_Line
     Error_Line = 0
@@ -659,55 +628,50 @@ async def reset_line_PID():
     
 #     print(f"bam_line: huong={huong}, speeds=L{left_speed:.0f}/R{right_speed:.0f}, intersection={intersection_detected}")
 
-async def di_den_n4(h, k, hanh_dong):
-  global n4
-  n4 = 0
-#   huong = h
-  await chinh_thang_line(h)
-  while n4 < k:
-    await bam_line(h, 80)
+# async def di_den_n4(h, k, hanh_dong):
+#   global n4
+#   n4 = 0
+# #   huong = h
+#   await chinh_thang_line(h)
+#   while n4 < k:
+#     await bam_line(h, 80)
     
-  await chinh_thang_line(h)
-  await asleep_ms(100)
-  await stop()
-  await asleep_ms(50) 
-  # await chinh_thang_line(h)
-  # await asleep_ms(100)
+#   await chinh_thang_line(h)
+#   await asleep_ms(100)
+#   await stop()
+#   await asleep_ms(50) 
+#   # await chinh_thang_line(h)
+#   # await asleep_ms(100)
 
-  # hành động khi đến n4
+#   # hành động khi đến n4
 
-  if hanh_dong == 'D':
-    await reset_PID()
-    await reset_line_PID()
+#   if hanh_dong == 'D':
+#     await reset_PID()
+#     await reset_line_PID()
     
-    await chinh_thang_line(h)
-    await asleep_ms(100)
-    await chinh_thang_line(h)
-    await asleep_ms(100)
-    await stop()
-    await asleep_ms(10) 
+#     await chinh_thang_line(h)
+#     await asleep_ms(100)
+#     await chinh_thang_line(h)
+#     await asleep_ms(100)
+#     await stop()
+#     await asleep_ms(10) 
     
-  elif hanh_dong == 'T':
-    await reset_PID()
-    await reset_line_PID()
+#   elif hanh_dong == 'T':
+#     await reset_PID()
+#     await reset_line_PID()
     
-    await xoay_trai(h)
+#     await xoay_trai(h)
     
-  elif hanh_dong == 'P':
-    await reset_PID()
-    await reset_line_PID()
+#   elif hanh_dong == 'P':
+#     await reset_PID()
+#     await reset_line_PID()
     
-    await xoay_phai(h)
+#     await xoay_phai(h)
 
-  #await chinh_thang_line(h)
-  print("di_den_n4. h: ", h, "k: ", k, "hanh_dong: ", hanh_dong)
+#   #await chinh_thang_line(h)
+#   print("di_den_n4. h: ", h, "k: ", k, "hanh_dong: ", hanh_dong)
   
   
-  
-
-# CẢI TIẾN ĐỂ ĐƯỜNG ĐI MƯỢT MÀ - KHÔNG THAY ĐỔI PID PARAMETERS
-
-# 1. SỬA HÀM bam_line() - Mượt mà hơn
 async def bam_line(huong, toc_do=80, enable_pid=True):
     global chenh_lech_line, Error_Line, Last_Error_Line, I_Line, PID_Line, filtered_D_Line
     
@@ -725,13 +689,12 @@ async def bam_line(huong, toc_do=80, enable_pid=True):
     
     await doc_line(huong)
     
-    # Kiểm tra intersection nhưng ít aggressive hơn
     intersection_detected = False
     try:
         line1_count = _line_sensor1.read(0) + _line_sensor1.read(1) + _line_sensor1.read(2) + _line_sensor1.read(3)
         line2_count = _line_sensor2.read_ss2(0) + _line_sensor2.read_ss2(1) + _line_sensor2.read_ss2(2) + _line_sensor2.read_ss2(3)
         
-        # ✅ CẢI TIẾN: Chỉ detect intersection khi chắc chắn
+        #   Chỉ detect intersection khi chắc chắn
         if (line1_count >= 4) or (line2_count >= 4) or (line1_count >= 3 and line2_count >= 3):
             intersection_detected = True
     except Exception as e:
@@ -740,7 +703,6 @@ async def bam_line(huong, toc_do=80, enable_pid=True):
     if enable_pid:
         Error_Line = chenh_lech_line
         
-        # ✅ CẢI TIẾN: Smoother adaptive gains
         current_Kp = Kp_line
         current_Ki = Ki_line  
         current_Kd = Kd_line
@@ -760,10 +722,7 @@ async def bam_line(huong, toc_do=80, enable_pid=True):
             current_Kp *= 0.95
             current_Ki *= 1.05
         
-        # P term
         P_Line = Error_Line
-        
-        # ✅ CẢI TIẾN: Smoother I term handling
         I_Line = I_Line + Error_Line
         
         # Gentle I-term management
@@ -776,7 +735,7 @@ async def bam_line(huong, toc_do=80, enable_pid=True):
         elif I_Line < -MAX_I_LINE_LIMIT:
             I_Line = -MAX_I_LINE_LIMIT * 0.95
         
-        # ✅ CẢI TIẾN: Filtered D term để giảm noise
+        # Filtered D term để giảm noise
         raw_D = Error_Line - Last_Error_Line
         # Low-pass filter cho D term
         alpha = 0.7  # Filter strength
@@ -884,8 +843,8 @@ async def xoay_trai(huong):
     await reset_PID()
     await reset_line_PID()
     
-    initial_rotation_speed = 42  # Start slower
-    final_rotation_speed = 30    # End even slower
+    initial_rotation_speed = 50  # Start slower
+    final_rotation_speed = 40    # End even slower
     
     # Phase 1: Clear intersection với controlled speed
     while True:
@@ -925,8 +884,8 @@ async def xoay_phai(huong):
     await reset_PID()
     await reset_line_PID()
     
-    initial_rotation_speed = 45  
-    final_rotation_speed = 32    
+    initial_rotation_speed = 50  
+    final_rotation_speed = 40    
     
     # 1: Clear intersection
     while True:
@@ -964,7 +923,7 @@ async def xoay_phai(huong):
 
 
 # Hàm di_den_n4() sau đó xoay trái/phải hoặc dừng lại
-async def di_den_n4(h, k, hanh_dong):
+async def di_den_n4(h, k, hanh_dong, tocdo_bamline=75):
     global n4
     n4 = 0
     
@@ -972,13 +931,15 @@ async def di_den_n4(h, k, hanh_dong):
     await asleep_ms(50)  # 
     
     while n4 < k:
-        await bam_line(h, 75)  
+        await bam_line(h, tocdo_bamline)  
         await asleep_ms(5)     
     
+    # mặc dù tốc độ là 75 65 55 nhưng khối lượng cũng nặng theo nên vẫn đúng, điều chỉnh tốc độ sẽ làm khối sau, thêm vào khối n4 luôn.
     if h == 0:
-      await asleep_ms(150) # canh chỉnh khoảng tg phát hiện ngã tư, để tâm xe trùng tâm ngã tư
+        await asleep_ms(150) # canh chỉnh khoảng tg phát hiện ngã tư, để tâm xe trùng tâm ngã tư
     elif h == 1:
-      await asleep_ms(180)
+        await asleep_ms(210)
+
       
     await robot_chay_voi_toc_doc(0, 0)  # Stop
     await asleep_ms(30)
@@ -989,17 +950,16 @@ async def di_den_n4(h, k, hanh_dong):
         await reset_PID()
         await reset_line_PID()
         await chinh_thang_line(h)
-        await asleep_ms(100) #
+        await asleep_ms(200) #
         await stop()
         
     elif hanh_dong == 'T':
-
         await xoay_trai(h)
         
     elif hanh_dong == 'P':
-
         await xoay_phai(h)
 
-    print("di_den_n4 completed. h:", h, "k:", k, "hanh_dong:", hanh_dong)
+    # print("di_den_n4 completed. h:", h, "k:", k, "hanh_dong:", hanh_dong)
+
 
 
